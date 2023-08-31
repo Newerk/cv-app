@@ -12,6 +12,40 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  display: grid;
+  grid-template-columns: 10rem, 1fr;
+}
+
+.date {
+  width: 3rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-component {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  height: 100vh;
+  background-color: black;
+  overflow-y: scroll;
+  padding: 2rem;
 }
 
 a {
