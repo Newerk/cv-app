@@ -37,7 +37,10 @@ export default function ExperienceComponent() {
     document.getElementById("new-bullet").value = "";
   };
 
-  const handleEditingBullet = () => {};
+  const handleEditingBullet = (e) => {
+    e.target.textContent = "Save";
+    e.target.nextElementSibling.textContent = "Cancel";
+  };
 
   return (
     <>
