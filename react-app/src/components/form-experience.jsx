@@ -28,6 +28,30 @@ function JobTitle() {
 // function BulletPoints() {
 // }
 
+function SaveAndCancelBtns() {
+  const handleClick = () => {
+
+    //DO NOT USE DOCUMENT QUERYSELECTOR, IT WILL ONLY WORK ON THE FIRST LISTED BULLETPOINT. this is just to show an idea of how i want the toggling to work
+    //perhaps use props instead so that it can target a specific list. maybe 'e.target' works too.
+    document.body.querySelector(".save-btn").classList.toggle("hidden");
+    document.body.querySelector(".cancel-btn").classList.toggle("hidden");
+
+    document.body.querySelector(".edit-btn").classList.toggle("hidden");
+    document.body.querySelector(".delete-btn").classList.toggle("hidden");
+
+  };
+  return (
+    <>
+      <button className="save-btn hidden" onClick={handleClick}>
+        Save
+      </button>
+      <button className="cancel-btn hidden" onClick={handleClick}>
+        Cancel
+      </button>
+    </>
+  );
+}
+
 export default function ExperienceComponent() {
   const [bulletpoint, setBulletPoint] = useState(bulletPointsData);
 
@@ -37,10 +61,9 @@ export default function ExperienceComponent() {
     document.getElementById("new-bullet").value = "";
   };
 
-  const handleEditingBullet = (e) => {
-    e.target.textContent = "Save";
-    e.target.nextElementSibling.textContent = "Cancel";
-  };
+  //   const handleEditingBullet = () => {
+
+  //   };
 
   return (
     <>
@@ -56,8 +79,24 @@ export default function ExperienceComponent() {
             {bulletpoint.map((point) => (
               <li key={point.id}>
                 <p>{point.info}</p>
-                <button onClick={handleEditingBullet}>Edit</button>
                 <button
+                  className="edit-btn"
+                  onClick={(e) => {
+                    e.target.classList.add("hidden");
+                    e.target.nextElementSibling.classList.add("hidden");
+
+                    document.body
+                      .querySelector(".save-btn")
+                      .classList.toggle("hidden");
+                    document.body
+                      .querySelector(".cancel-btn")
+                      .classList.toggle("hidden");
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="delete-btn"
                   onClick={() =>
                     setBulletPoint(
                       bulletpoint.filter((li) => li.id !== point.id)
@@ -66,6 +105,7 @@ export default function ExperienceComponent() {
                 >
                   Delete
                 </button>
+                <SaveAndCancelBtns />
               </li>
             ))}
           </ul>
