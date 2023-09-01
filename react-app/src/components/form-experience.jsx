@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { bulletPointsData } from "../data/bulletpoints";
 import DateRange from "./date-range";
 
 function Company() {
@@ -22,11 +24,16 @@ function JobTitle() {
   );
 }
 
-function BulletPoints() {
-  return <></>;
-}
+// function BulletPoints() {
+// }
 
 export default function ExperienceComponent() {
+  const [bulletpoint, setBulletPoint] = useState(bulletPointsData);
+
+  const handleAddingBullet = () => {
+    setBulletPoint([...bulletpoint, { id: "test", info: document.getElementById('new-bullet').value }]);
+  };
+
   return (
     <>
       <h1>Experience</h1>
@@ -35,7 +42,21 @@ export default function ExperienceComponent() {
         <Company />
         <DateRange />
       </div>
-      <div className="bullets-wrapper"></div>
+      <div className="bullets-wrapper">
+        {
+          <ul>
+            {bulletpoint.map((point) => (
+              <li key={point.id}>
+                <p>{point.info}</p>
+                <button>Edit</button>
+                <button>Delete</button>
+              </li>
+            ))}
+          </ul>
+        }
+        <textarea name="new-bullet" id="new-bullet"></textarea>
+        <button onClick={handleAddingBullet}>Add Bulletpoint</button>
+      </div>
     </>
   );
 }
