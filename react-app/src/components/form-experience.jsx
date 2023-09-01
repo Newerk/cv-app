@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { bulletPointsData } from "../data/bulletpoints";
 import DateRange from "./date-range";
-import { v4 as uuidv4 } from 'uuid';
-
-
-
+import { v4 as uuidv4 } from "uuid";
 
 function Company() {
   return (
@@ -40,13 +37,7 @@ export default function ExperienceComponent() {
     document.getElementById("new-bullet").value = "";
   };
 
-  const handleRemovingBullet = () => {
-    //filter out the bulletpoint based on id
-  };
-
-  const handleEditingBullet = () => {
-  };
-
+  const handleEditingBullet = () => {};
 
   return (
     <>
@@ -63,7 +54,15 @@ export default function ExperienceComponent() {
               <li key={point.id}>
                 <p>{point.info}</p>
                 <button onClick={handleEditingBullet}>Edit</button>
-                <button onClick={handleRemovingBullet}>Delete</button>
+                <button
+                  onClick={() =>
+                    setBulletPoint(
+                      bulletpoint.filter((li) => li.id !== point.id)
+                    )
+                  }
+                >
+                  Delete
+                </button>
               </li>
             ))}
           </ul>
