@@ -84,62 +84,71 @@ export default function ExperienceComponent() {
   };
 
   //   const handleEditingBullet = () => {
-
+  // //code to handle making the text in the bulletpoint editable
   //   };
 
   return (
     <>
       <h1>Experience</h1>
-      <div>
-        <JobTitle />
-        <Company />
-        <DateRange />
-      </div>
-      <div className="bullets-wrapper">
-        {
-          <ul>
-            {bulletpoint.map((point) => (
-              <li key={point.id}>
-                <p>{point.info}</p>
-                <button
-                  className="edit-btn"
-                  onClick={(e) => {
-                    //edit btn
-                    e.target.classList.toggle("hidden");
 
-                    //delete btn
-                    e.target.nextElementSibling.classList.toggle("hidden");
+      <button>
+        + New Experience
+        {/*the experience container below is only visible for code writing perposes. it will later on only 
+          appear when the New Experience button is clicked*/}
+      </button>
 
-                    //save btn
-                    e.target.nextElementSibling.nextElementSibling.classList.toggle(
-                      "hidden"
-                    );
+      <div className="experience-container">
+        <div>
+          <JobTitle />
+          <Company />
+          <DateRange />
+        </div>
+        <div className="bullets-wrapper">
+          {
+            <ul>
+              {bulletpoint.map((point) => (
+                <li key={point.id}>
+                  <p>{point.info}</p>
+                  <button
+                    className="edit-btn"
+                    onClick={(e) => {
+                      //edit btn
+                      e.target.classList.toggle("hidden");
 
-                    //cancel btn
-                    e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle(
-                      "hidden"
-                    );
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="delete-btn"
-                  onClick={() =>
-                    setBulletPoint(
-                      bulletpoint.filter((li) => li.id !== point.id)
-                    )
-                  }
-                >
-                  Delete
-                </button>
-                <SaveAndCancelBtns />
-              </li>
-            ))}
-          </ul>
-        }
-        <textarea name="new-bullet" id="new-bullet"></textarea>
-        <button onClick={handleAddingBullet}>Add Bulletpoint</button>
+                      //delete btn
+                      e.target.nextElementSibling.classList.toggle("hidden");
+
+                      //save btn
+                      e.target.nextElementSibling.nextElementSibling.classList.toggle(
+                        "hidden"
+                      );
+
+                      //cancel btn
+                      e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle(
+                        "hidden"
+                      );
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="delete-btn"
+                    onClick={() =>
+                      setBulletPoint(
+                        bulletpoint.filter((li) => li.id !== point.id)
+                      )
+                    }
+                  >
+                    Delete
+                  </button>
+                  <SaveAndCancelBtns />
+                </li>
+              ))}
+            </ul>
+          }
+          <textarea name="new-bullet" id="new-bullet"></textarea>
+          <button onClick={handleAddingBullet}>Add Bulletpoint</button>
+        </div>
       </div>
     </>
   );
