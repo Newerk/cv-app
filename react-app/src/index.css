@@ -110,7 +110,7 @@ button:focus-visible {
 }
 
 .hidden {
-  /* display: none; */
+  display: none;
   visibility: hidden;
 }
 

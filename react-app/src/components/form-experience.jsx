@@ -25,27 +25,49 @@ function JobTitle() {
   );
 }
 
-// function BulletPoints() {
-// }
-
 function SaveAndCancelBtns() {
-  const handleClick = () => {
-
-    //DO NOT USE DOCUMENT QUERYSELECTOR, IT WILL ONLY WORK ON THE FIRST LISTED BULLETPOINT. this is just to show an idea of how i want the toggling to work
-    //perhaps use props instead so that it can target a specific list. maybe 'e.target' works too.
-    document.body.querySelector(".save-btn").classList.toggle("hidden");
-    document.body.querySelector(".cancel-btn").classList.toggle("hidden");
-
-    document.body.querySelector(".edit-btn").classList.toggle("hidden");
-    document.body.querySelector(".delete-btn").classList.toggle("hidden");
-
-  };
   return (
     <>
-      <button className="save-btn hidden" onClick={handleClick}>
+      <button
+        className="save-btn hidden"
+        onClick={(e) => {
+          //save btn
+          e.target.classList.toggle("hidden");
+
+          //cancel btn
+          e.target.nextElementSibling.classList.toggle("hidden");
+
+          //delete btn
+          e.target.previousElementSibling.classList.toggle("hidden");
+
+          //edit btn
+          e.target.previousElementSibling.previousElementSibling.classList.toggle(
+            "hidden"
+          );
+        }}
+      >
         Save
       </button>
-      <button className="cancel-btn hidden" onClick={handleClick}>
+      <button
+        className="cancel-btn hidden"
+        onClick={(e) => {
+          //cancel btn
+          e.target.classList.toggle("hidden");
+
+          //save btn
+          e.target.previousElementSibling.classList.toggle("hidden");
+
+          //delete btn
+          e.target.previousElementSibling.previousElementSibling.classList.toggle(
+            "hidden"
+          );
+
+          //edit btn
+          e.target.previousElementSibling.previousElementSibling.previousElementSibling.classList.toggle(
+            "hidden"
+          );
+        }}
+      >
         Cancel
       </button>
     </>
@@ -82,15 +104,21 @@ export default function ExperienceComponent() {
                 <button
                   className="edit-btn"
                   onClick={(e) => {
-                    e.target.classList.add("hidden");
-                    e.target.nextElementSibling.classList.add("hidden");
+                    //edit btn
+                    e.target.classList.toggle("hidden");
 
-                    document.body
-                      .querySelector(".save-btn")
-                      .classList.toggle("hidden");
-                    document.body
-                      .querySelector(".cancel-btn")
-                      .classList.toggle("hidden");
+                    //delete btn
+                    e.target.nextElementSibling.classList.toggle("hidden");
+
+                    //save btn
+                    e.target.nextElementSibling.nextElementSibling.classList.toggle(
+                      "hidden"
+                    );
+
+                    //cancel btn
+                    e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle(
+                      "hidden"
+                    );
                   }}
                 >
                   Edit
