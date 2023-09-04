@@ -76,6 +76,7 @@ function SaveAndCancelBtns() {
 
 function Bulletpoints() {
   const [bulletpoint, setBulletPoint] = useState(bulletPointsData);
+
   const handleAddingBullet = () => {
     let textAreaValue = document.getElementById("new-bullet").value;
     setBulletPoint([...bulletpoint, { id: uuidv4(), info: textAreaValue }]);
@@ -142,6 +143,36 @@ export default function ExperienceComponent() {
   return (
     <>
       <h1>Experience</h1>
+
+      {
+        /* {savedExperiences} <- the var that stores and array of saved experiences, with condensed 
+        information shown. can be clicked on to be edited
+        
+        Below is an example of the type of information shown when it is saved.
+        it will be ordered based on the years. it will go from recent to oldest*/
+
+        <>
+          <div className="examnple 1">
+            <p>
+              <strong>Software Engineer</strong>, Some Tech Place
+            </p>
+            <p>2020-Present</p>
+          </div>
+
+          <div className="examnple 2">
+            <p>
+              <strong>Accountant</strong>, Paperboy Finance, LLC
+            </p>
+            <p>2009-2020</p>
+          </div>
+          <div className="examnple 3">
+            <p>
+              <strong>Teacher</strong>, P.S. Ovr 9000
+            </p>
+            <p>2005-2008</p>
+          </div>
+        </>
+      }
 
       <button
         ref={addExpBtnRef}
