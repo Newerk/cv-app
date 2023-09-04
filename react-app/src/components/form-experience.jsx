@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { bulletPointsData } from "../data/bulletpoints";
 import DateRange from "./date-range";
 import { v4 as uuidv4 } from "uuid";
@@ -29,7 +29,7 @@ function SaveAndCancelBtns() {
   return (
     <>
       <button
-        className="save-btn hidden"
+        className="bullet save-btn hidden"
         onClick={(e) => {
           //save btn
           e.target.classList.toggle("hidden");
@@ -49,7 +49,7 @@ function SaveAndCancelBtns() {
         Save
       </button>
       <button
-        className="cancel-btn hidden"
+        className="bullet cancel-btn hidden"
         onClick={(e) => {
           //cancel btn
           e.target.classList.toggle("hidden");
@@ -76,6 +76,8 @@ function SaveAndCancelBtns() {
 
 export default function ExperienceComponent() {
   const [bulletpoint, setBulletPoint] = useState(bulletPointsData);
+  const expContainerRef = useRef(null);
+  const addExpBtnRef = useRef(null);
 
   const handleAddingBullet = () => {
     let textAreaValue = document.getElementById("new-bullet").value;
@@ -87,17 +89,27 @@ export default function ExperienceComponent() {
   // //code to handle making the text in the bulletpoint editable
   //   };
 
+  const toggleFormVisiblity = () => {
+    expContainerRef.current.classList.toggle("hidden");
+    addExpBtnRef.current.classList.toggle("hidden");
+  };
+
   return (
     <>
       <h1>Experience</h1>
 
-      <button>
+      <button
+        ref={addExpBtnRef}
+        onClick={(e) => {
+          e.target.classList.toggle("hidden");
+          expContainerRef.current.classList.toggle("hidden");
+        }}
+      >
         + New Experience
-        {/*the experience container below is only visible for code writing perposes. it will later on only 
+        {/*the experience container below is only visible for code writing purposes. Later on it will only 
           appear when the New Experience button is clicked*/}
       </button>
-
-      <div className="experience-container">
+      <div ref={expContainerRef} className="experience-container hidden">
         <div>
           <JobTitle />
           <Company />
@@ -149,6 +161,12 @@ export default function ExperienceComponent() {
           <textarea name="new-bullet" id="new-bullet"></textarea>
           <button onClick={handleAddingBullet}>Add Bulletpoint</button>
         </div>
+        <button className="experience cancel-btn" onClick={toggleFormVisiblity}>
+          Cancel
+        </button>
+        <button className="experience save-btn" onClick={toggleFormVisiblity}>
+          Save
+        </button>
       </div>
     </>
   );
