@@ -155,29 +155,34 @@ function SavedExperiences() {
 export default function ExperienceComponent() {
   const expContainerRef = useRef(null);
   const addExpBtnRef = useRef(null);
+  const savedExpRef = useRef(null);
 
   const toggleFormVisiblity = () => {
     expContainerRef.current.classList.toggle("hidden");
     addExpBtnRef.current.classList.toggle("hidden");
+    savedExpRef.current.classList.toggle("hidden");
   };
 
   return (
     <>
       <h1>Experience</h1>
 
-      {/* {savedExperiences} <- the var that stores and array of saved experiences, with condensed 
-        information shown. can be clicked on to be edited
-
-         <SavedExperiences /> should be hidden while working on a new experience form
+      {/* 
+      <SavedExperiences /> renders an array of saved experiences, with condensed info
+      <SavedExperiences /> can be clicked on to be edited
+      <SavedExperiences /> should be hidden while working on a new experience form
       */}
 
-      <SavedExperiences />
+      <div ref={savedExpRef}>
+        <SavedExperiences />
+      </div>
 
       <button
         ref={addExpBtnRef}
         onClick={(e) => {
           e.target.classList.toggle("hidden");
           expContainerRef.current.classList.toggle("hidden");
+          savedExpRef.current.classList.toggle("hidden");
         }}
       >
         + New Experience
