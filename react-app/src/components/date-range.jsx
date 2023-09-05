@@ -7,7 +7,7 @@ export default function DateRange() {
           <div className="date-container">
             <div className="date-wrapper">
               Begin
-              <input
+              <input id="begin-date"
                 type="number"
                 min="1900"
                 max="2099"
@@ -17,7 +17,7 @@ export default function DateRange() {
             </div>
             <div className="date-wrapper">
               End
-              <input
+              <input id="end-date"
                 type="number"
                 min="1900"
                 max="2099"

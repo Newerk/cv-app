@@ -132,27 +132,10 @@ function Bulletpoints() {
   );
 }
 
-function SavedExperiences() {
+export default function ExperienceComponent() {
   const [savedExperiences, setSavedExperiences] =
     useState(savedExperiencesData);
 
-  return (
-    <>
-      {savedExperiences.map((experience) => (
-        <div key={experience.id} className="saved-experience">
-          <p>
-            <strong>{experience.position}</strong>, {experience.employer}
-          </p>
-          <p>
-            {experience.beginDate}-{experience.endDate}
-          </p>
-        </div>
-      ))}
-    </>
-  );
-}
-
-export default function ExperienceComponent() {
   const expContainerRef = useRef(null);
   const addExpBtnRef = useRef(null);
   const savedExpRef = useRef(null);
@@ -162,6 +145,45 @@ export default function ExperienceComponent() {
     addExpBtnRef.current.classList.toggle("hidden");
     savedExpRef.current.classList.toggle("hidden");
   };
+
+  const handleSaveExperience = () => {
+    setSavedExperiences([
+      ...savedExperiences,
+      {
+        id: uuidv4,
+        position: document.getElementById("position").value,
+        employer: document.getElementById("company").value,
+        beginDate: document.getElementById("begin-date").value,
+        endDate: document.getElementById("end-date").value,
+        bulletPoints: [],//need to take bulletpoints and copy it here
+      },
+    ]);
+
+    //clear text from inputs
+    document.getElementById("position").value = "";
+    document.getElementById("company").value = "";
+    document.getElementById("begin-date").value = "";
+    document.getElementById("end-date").value = "";
+
+    console.log(savedExperiences);
+  };
+
+  function SavedExperiences() {
+    return (
+      <>
+        {savedExperiences.map((experience) => (
+          <div key={experience.id} className="saved-experience">
+            <p>
+              <strong>{experience.position}</strong>, {experience.employer}
+            </p>
+            <p>
+              {experience.beginDate}-{experience.endDate}
+            </p>
+          </div>
+        ))}
+      </>
+    );
+  }
 
   return (
     <>
@@ -197,7 +219,13 @@ export default function ExperienceComponent() {
         <button className="experience cancel-btn" onClick={toggleFormVisiblity}>
           Cancel
         </button>
-        <button className="experience save-btn" onClick={toggleFormVisiblity}>
+        <button
+          className="experience save-btn"
+          onClick={() => {
+            toggleFormVisiblity();
+            handleSaveExperience();
+          }}
+        >
           Save
         </button>
       </div>
