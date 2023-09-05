@@ -75,67 +75,11 @@ function SaveAndCancelBtns() {
   );
 }
 
-function Bulletpoints() {
-  const [bulletpoint, setBulletPoint] = useState([]);
-
-  const handleAddingBullet = () => {
-    let textAreaValue = document.getElementById("new-bullet").value;
-    setBulletPoint([...bulletpoint, { id: uuidv4(), info: textAreaValue }]);
-    bulletpoint.map((bullet) => bulletPointsData.push(bullet));
-    document.getElementById("new-bullet").value = "";
-  };
-
-  return (
-    <div className="bullets-wrapper">
-      {
-        <ul>
-          {bulletpoint.map((point) => (
-            <li key={point.id}>
-              <p>{point.info}</p>
-              <button
-                className="edit-btn"
-                onClick={(e) => {
-                  //edit btn
-                  e.target.classList.toggle("hidden");
-
-                  //delete btn
-                  e.target.nextElementSibling.classList.toggle("hidden");
-
-                  //save btn
-                  e.target.nextElementSibling.nextElementSibling.classList.toggle(
-                    "hidden"
-                  );
-
-                  //cancel btn
-                  e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle(
-                    "hidden"
-                  );
-                }}
-              >
-                Edit
-              </button>
-              <button
-                className="delete-btn"
-                onClick={() =>
-                  setBulletPoint(bulletpoint.filter((li) => li.id !== point.id))
-                }
-              >
-                Delete
-              </button>
-              <SaveAndCancelBtns />
-            </li>
-          ))}
-        </ul>
-      }
-      <textarea name="new-bullet" id="new-bullet"></textarea>
-      <button onClick={handleAddingBullet}>Add Bulletpoint</button>
-    </div>
-  );
-}
-
 export default function ExperienceComponent() {
   const [savedExperiences, setSavedExperiences] =
     useState(savedExperiencesData);
+
+  const [bulletpoint, setBulletPoint] = useState([]);
 
   const expContainerRef = useRef(null);
   const addExpBtnRef = useRef(null);
@@ -151,12 +95,12 @@ export default function ExperienceComponent() {
     setSavedExperiences([
       ...savedExperiences,
       {
-        id: uuidv4,
+        id: uuidv4(),
         position: document.getElementById("position").value,
         employer: document.getElementById("company").value,
         beginDate: document.getElementById("begin-date").value,
         endDate: document.getElementById("end-date").value,
-        bulletPoints: bulletPointsData, //need to take bulletpoints and copy it here
+        bulletPoints: [...bulletpoint], //need to take bulletpoints and copy it here
       },
     ]);
 
@@ -165,13 +109,65 @@ export default function ExperienceComponent() {
     document.getElementById("company").value = "";
     document.getElementById("begin-date").value = "";
     document.getElementById("end-date").value = "";
-
-    while (bulletPointsData.length > 0) {
-      bulletPointsData.pop();
-    }
-
-    console.log(savedExperiences);
+    setBulletPoint([]);
   };
+
+  function Bulletpoints() {
+    const handleAddingBullet = () => {
+      let textAreaValue = document.getElementById("new-bullet").value;
+      setBulletPoint([...bulletpoint, { id: uuidv4(), info: textAreaValue }]);
+      document.getElementById("new-bullet").value = "";
+    };
+
+    return (
+      <div className="bullets-wrapper">
+        {
+          <ul>
+            {bulletpoint.map((point) => (
+              <li key={point.id}>
+                <p>{point.info}</p>
+                <button
+                  className="edit-btn"
+                  onClick={(e) => {
+                    //edit btn
+                    e.target.classList.toggle("hidden");
+
+                    //delete btn
+                    e.target.nextElementSibling.classList.toggle("hidden");
+
+                    //save btn
+                    e.target.nextElementSibling.nextElementSibling.classList.toggle(
+                      "hidden"
+                    );
+
+                    //cancel btn
+                    e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle(
+                      "hidden"
+                    );
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="delete-btn"
+                  onClick={() =>
+                    setBulletPoint(
+                      bulletpoint.filter((li) => li.id !== point.id)
+                    )
+                  }
+                >
+                  Delete
+                </button>
+                <SaveAndCancelBtns />
+              </li>
+            ))}
+          </ul>
+        }
+        <textarea name="new-bullet" id="new-bullet"></textarea>
+        <button onClick={handleAddingBullet}>Add Bulletpoint</button>
+      </div>
+    );
+  }
 
   function SavedExperiences() {
     return (
@@ -193,12 +189,6 @@ export default function ExperienceComponent() {
   return (
     <>
       <h1>Experience</h1>
-
-      {/* 
-      <SavedExperiences /> renders an array of saved experiences, with condensed info
-      <SavedExperiences /> can be clicked on to be edited
-      <SavedExperiences /> should be hidden while working on a new experience form
-      */}
 
       <div ref={savedExpRef}>
         <SavedExperiences />
