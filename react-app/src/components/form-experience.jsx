@@ -76,11 +76,12 @@ function SaveAndCancelBtns() {
 }
 
 function Bulletpoints() {
-  const [bulletpoint, setBulletPoint] = useState(bulletPointsData);
+  const [bulletpoint, setBulletPoint] = useState([]);
 
   const handleAddingBullet = () => {
     let textAreaValue = document.getElementById("new-bullet").value;
     setBulletPoint([...bulletpoint, { id: uuidv4(), info: textAreaValue }]);
+    bulletpoint.map((bullet) => bulletPointsData.push(bullet));
     document.getElementById("new-bullet").value = "";
   };
 
@@ -155,7 +156,7 @@ export default function ExperienceComponent() {
         employer: document.getElementById("company").value,
         beginDate: document.getElementById("begin-date").value,
         endDate: document.getElementById("end-date").value,
-        bulletPoints: [],//need to take bulletpoints and copy it here
+        bulletPoints: bulletPointsData, //need to take bulletpoints and copy it here
       },
     ]);
 
@@ -164,6 +165,10 @@ export default function ExperienceComponent() {
     document.getElementById("company").value = "";
     document.getElementById("begin-date").value = "";
     document.getElementById("end-date").value = "";
+
+    while (bulletPointsData.length > 0) {
+      bulletPointsData.pop();
+    }
 
     console.log(savedExperiences);
   };
