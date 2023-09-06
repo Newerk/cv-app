@@ -1,6 +1,7 @@
 //make sure to give the option for the user to select 'Present' if they are still currently involved
 
 import { useRef, useState } from "react";
+import { monthsList } from "../data/monthsArray";
 
 function MonthSelection({ data, handler }) {
   return (
@@ -44,21 +45,6 @@ export default function DateRange() {
   const monthSelectRef = useRef(null);
   const yearSelectRef = useRef(null);
 
-  const monthsList = [
-    { month: "January", numerical: "01", selected: false },
-    { month: "Febuary", numerical: "02", selected: false },
-    { month: "March", numerical: "03", selected: false },
-    { month: "April", numerical: "04", selected: false },
-    { month: "May", numerical: "05", selected: false },
-    { month: "June", numerical: "06", selected: false },
-    { month: "July", numerical: "07", selected: false },
-    { month: "August", numerical: "08", selected: false },
-    { month: "September", numerical: "09", selected: false },
-    { month: "October", numerical: "10", selected: false },
-    { month: "November", numerical: "11", selected: false },
-    { month: "December", numerical: "12", selected: false },
-  ];
-
   const handleMonthSelection = () => {
     setBeginMonth("TEST");
     monthSelectRef.current.classList.toggle("hidden");
@@ -73,12 +59,18 @@ export default function DateRange() {
     <>
       <div className="begin-date-inputs">
         <button
-          onClick={() => monthSelectRef.current.classList.toggle("hidden")}
+          onClick={() => {
+            monthSelectRef.current.classList.toggle("hidden");
+            yearSelectRef.current.classList.add("hidden");
+          }}
         >
           {beginMonth}
         </button>
         <button
-          onClick={() => yearSelectRef.current.classList.toggle("hidden")}
+          onClick={() => {
+            yearSelectRef.current.classList.toggle("hidden");
+            monthSelectRef.current.classList.add("hidden");
+          }}
         >
           {beginYear}
         </button>
