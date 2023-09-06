@@ -12,4 +12,6 @@ export let bulletPointsData = [
     //   id: 2,
     //   info: "I DID YADDA YADDA YADDA FOR MY COMPANY. THIS SAVED THREE BAJILLION DOLLARS",
     // },
+
+    //DELETE: NO LONGER NEEDED
 ];

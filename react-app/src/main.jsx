@@ -16,7 +16,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </div>
       <div className="cv-container">
         <div id="cv-previewer">
-          TEXT
           <CVPreview />
         </div>
       </div>

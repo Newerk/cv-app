@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { bulletPointsData } from "../data/bulletpoints";
 import DateRange from "./date-range";
 import { v4 as uuidv4 } from "uuid";
 import { savedExperiencesData } from "../data/savedExperiences";
@@ -85,6 +84,15 @@ export default function ExperienceComponent() {
   const addExpBtnRef = useRef(null);
   const savedExpRef = useRef(null);
 
+  function formReset() {
+    //clear text from inputs
+    document.getElementById("position").value = "";
+    document.getElementById("company").value = "";
+    // document.getElementById("begin-date").value = ""; //not working due to how react works
+    // document.getElementById("end-date").value = ""; //not working due to how react works
+    setBulletPoint([]);
+  }
+
   const toggleFormVisiblity = () => {
     expContainerRef.current.classList.toggle("hidden");
     addExpBtnRef.current.classList.toggle("hidden");
@@ -103,13 +111,7 @@ export default function ExperienceComponent() {
         bulletPoints: [...bulletpoint], //need to take bulletpoints and copy it here
       },
     ]);
-
-    //clear text from inputs
-    document.getElementById("position").value = "";
-    document.getElementById("company").value = "";
-    document.getElementById("begin-date").value = "";
-    document.getElementById("end-date").value = "";
-    setBulletPoint([]);
+    formReset();
   };
 
   function Bulletpoints() {
@@ -211,7 +213,13 @@ export default function ExperienceComponent() {
           <DateRange />
           <Bulletpoints />
         </div>
-        <button className="experience cancel-btn" onClick={toggleFormVisiblity}>
+        <button
+          className="experience cancel-btn"
+          onClick={() => {
+            toggleFormVisiblity();
+            formReset();
+          }}
+        >
           Cancel
         </button>
         <button
