@@ -1,7 +1,12 @@
+/* eslint-disable react/prop-types */
 //make sure to give the option for the user to select 'Present' if they are still currently involved
 
 import { useRef, useState } from "react";
 import { monthsList } from "../data/monthsArray";
+import "../date-range.css";
+
+
+//Elements with "focused" toggle will be the element of focus to have its text content change based on the user selection
 
 function MonthSelection({ data, handler }) {
   return (
@@ -45,54 +50,86 @@ export default function DateRange() {
   const monthSelectRef = useRef(null);
   const yearSelectRef = useRef(null);
 
-  const handleMonthSelection = () => {
-    setBeginMonth("TEST");
+  const handleMonthSelection = (e) => {
+    setBeginMonth(e.target.textContent);
     monthSelectRef.current.classList.toggle("hidden");
   };
 
-  const handleYearSelection = () => {
-    setBeginYear("TEST");
+  const handleYearSelection = (e) => {
+    setBeginYear(e.target.textContent);
     yearSelectRef.current.classList.toggle("hidden");
   };
 
   return (
-    <>
+    <div className="date-range-component">
       <div className="begin-date-inputs">
-        <button
-          onClick={() => {
-            monthSelectRef.current.classList.toggle("hidden");
-            yearSelectRef.current.classList.add("hidden");
-          }}
-        >
-          {beginMonth}
-        </button>
-        <button
-          onClick={() => {
-            yearSelectRef.current.classList.toggle("hidden");
-            monthSelectRef.current.classList.add("hidden");
-          }}
-        >
-          {beginYear}
-        </button>
-
-        <div ref={monthSelectRef} className="months-dropdown hidden">
-          <MonthSelection data={monthsList} handler={handleMonthSelection} />
-        </div>
-        <div ref={yearSelectRef} className="years-dropdown hidden">
-          <YearSelection handler={handleYearSelection} />
+        Start Date
+        <div className="buttons-wrapper">
+          <button
+            className="month-btn"
+            onClick={(e) => {
+              monthSelectRef.current.classList.toggle("hidden");
+              yearSelectRef.current.classList.add("hidden");
+              e.target.parentElement
+                .querySelector(".month-btn")
+                .classList.toggle("focused");
+            }}
+          >
+            {beginMonth}
+          </button>
+          <button
+            className="year-btn"
+            onClick={(e) => {
+              yearSelectRef.current.classList.toggle("hidden");
+              monthSelectRef.current.classList.add("hidden");
+              e.target.parentElement
+                .querySelector(".year-btn")
+                .classList.toggle("focused");
+            }}
+          >
+            {beginYear}
+          </button>
         </div>
       </div>
-
       <div className="end-date-inputs">
-        <div>
-          <button>{endMonth}</button>
-          <button>{endYear}</button>
+        End Date
+        <div className="buttons-wrapper">
+          <button
+            className="month-btn"
+            onClick={(e) => {
+              monthSelectRef.current.classList.toggle("hidden");
+              yearSelectRef.current.classList.add("hidden");
+              e.target.parentElement
+                .querySelector(".month-btn")
+                .classList.toggle("focused");
+            }}
+          >
+            {endMonth}
+          </button>
+          <button
+            className="year-btn"
+            onClick={(e) => {
+              yearSelectRef.current.classList.toggle("hidden");
+              monthSelectRef.current.classList.add("hidden");
+              e.target.parentElement
+                .querySelector(".year-btn")
+                .classList.toggle("focused");
+            }}
+          >
+            {endYear}
+          </button>
         </div>
         <div>
           <input type="checkbox" name="present" id="present-cb" />
           <label htmlFor="present-cb">Present</label>
         </div>
       </div>
-    </>
+      <div ref={monthSelectRef} className="months-dropdown hidden">
+        <MonthSelection data={monthsList} handler={handleMonthSelection} />
+      </div>
+      <div ref={yearSelectRef} className="years-dropdown hidden">
+        <YearSelection handler={handleYearSelection} />
+      </div>
+    </div>
   );
 }

@@ -1,0 +1,35 @@
+.date-range-component {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  width: 100%;
+}
+.buttons-wrapper {
+  display: flex;
+}
+
+.begin-date-inputs {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.end-date-inputs {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.months-dropdown {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  background-color: aliceblue;
+}
+
+.years-dropdown {
+  grid-column: 1 / 3;
+  grid-row: 3;
+  background-color: aliceblue;
+  height: 15rem;
+  overflow-y: auto;
+}
