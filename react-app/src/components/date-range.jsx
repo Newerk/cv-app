@@ -5,7 +5,6 @@ import { useRef, useState } from "react";
 import { monthsList } from "../data/monthsArray";
 import "../date-range.css";
 
-
 //Elements with "focused" toggle will be the element of focus to have its text content change based on the user selection
 
 function MonthSelection({ data, handler }) {
@@ -50,19 +49,53 @@ export default function DateRange() {
   const monthSelectRef = useRef(null);
   const yearSelectRef = useRef(null);
 
+  const beginInputsRef = useRef(null);
+  const endInputsRef = useRef(null);
+
   const handleMonthSelection = (e) => {
-    setBeginMonth(e.target.textContent);
+    if (
+      beginInputsRef.current
+        .querySelector(".month-btn")
+        .classList.contains("focused")
+    ) {
+      setBeginMonth(e.target.textContent);
+    } else {
+      setEndMonth(e.target.textContent);
+    }
+
     monthSelectRef.current.classList.toggle("hidden");
   };
 
   const handleYearSelection = (e) => {
-    setBeginYear(e.target.textContent);
+    if (
+      endInputsRef.current
+        .querySelector(".year-btn")
+        .classList.contains("focused")
+    ) {
+      setBeginYear(e.target.textContent);
+    } else {
+      setEndYear(e.target.textContent);
+    }
+
     yearSelectRef.current.classList.toggle("hidden");
+  };
+
+  const clearFocusedElements = () => {
+    beginInputsRef.current
+      .querySelector(".month-btn")
+      .classList.remove("focused");
+    beginInputsRef.current
+      .querySelector(".year-btn")
+      .classList.remove("focused");
+    endInputsRef.current
+      .querySelector(".month-btn")
+      .classList.remove("focused");
+    endInputsRef.current.querySelector(".year-btn").classList.remove("focused");
   };
 
   return (
     <div className="date-range-component">
-      <div className="begin-date-inputs">
+      <div className="begin-date-inputs" ref={beginInputsRef}>
         Start Date
         <div className="buttons-wrapper">
           <button
@@ -70,6 +103,9 @@ export default function DateRange() {
             onClick={(e) => {
               monthSelectRef.current.classList.toggle("hidden");
               yearSelectRef.current.classList.add("hidden");
+
+              clearFocusedElements();
+
               e.target.parentElement
                 .querySelector(".month-btn")
                 .classList.toggle("focused");
@@ -82,6 +118,9 @@ export default function DateRange() {
             onClick={(e) => {
               yearSelectRef.current.classList.toggle("hidden");
               monthSelectRef.current.classList.add("hidden");
+
+              clearFocusedElements();
+
               e.target.parentElement
                 .querySelector(".year-btn")
                 .classList.toggle("focused");
@@ -91,7 +130,7 @@ export default function DateRange() {
           </button>
         </div>
       </div>
-      <div className="end-date-inputs">
+      <div className="end-date-inputs" ref={endInputsRef}>
         End Date
         <div className="buttons-wrapper">
           <button
@@ -99,6 +138,9 @@ export default function DateRange() {
             onClick={(e) => {
               monthSelectRef.current.classList.toggle("hidden");
               yearSelectRef.current.classList.add("hidden");
+
+              clearFocusedElements();
+
               e.target.parentElement
                 .querySelector(".month-btn")
                 .classList.toggle("focused");
@@ -111,6 +153,9 @@ export default function DateRange() {
             onClick={(e) => {
               yearSelectRef.current.classList.toggle("hidden");
               monthSelectRef.current.classList.add("hidden");
+
+              clearFocusedElements();
+
               e.target.parentElement
                 .querySelector(".year-btn")
                 .classList.toggle("focused");
