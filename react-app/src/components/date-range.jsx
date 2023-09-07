@@ -68,7 +68,7 @@ export default function DateRange() {
 
   const handleYearSelection = (e) => {
     if (
-      endInputsRef.current
+      beginInputsRef.current
         .querySelector(".year-btn")
         .classList.contains("focused")
     ) {
