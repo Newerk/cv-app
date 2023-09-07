@@ -164,8 +164,17 @@ export default function DateRange() {
             {endYear}
           </button>
         </div>
-        <div>
-          <input type="checkbox" name="present" id="present-cb" />
+        <div className="checkbox">
+          <input
+            type="checkbox"
+            name="present"
+            id="present-cb"
+            onChange={() =>
+              endInputsRef.current
+                .querySelector(".buttons-wrapper")
+                .classList.toggle("hidden")
+            }
+          />
           <label htmlFor="present-cb">Present</label>
         </div>
       </div>
