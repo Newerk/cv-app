@@ -1,5 +1,9 @@
 import { useRef, useState } from "react";
-import DateRange, { yearStorage } from "./date-range";
+import DateRange, {
+  expBeginYearRef,
+  expEndYearRef,
+  yearStorage,
+} from "./date-range";
 import { v4 as uuidv4 } from "uuid";
 import { savedExperiencesData } from "../data/savedExperiences";
 
@@ -85,6 +89,11 @@ export default function ExperienceComponent() {
   const savedExpRef = useRef(null);
 
   function formReset() {
+    // let resetYears = [...savedExperiences];
+    // resetYears[resetYears.length - 1].beginDate = "Year";
+    // resetYears[resetYears.length - 1].endDate = "Year";
+    // setSavedExperiences(resetYears);
+
     //clear text from inputs
     document.getElementById("position").value = "";
     document.getElementById("company").value = "";
@@ -111,6 +120,7 @@ export default function ExperienceComponent() {
         bulletPoints: [...bulletpoint], //need to take bulletpoints and copy it here
       },
     ]);
+
     formReset();
   };
 
@@ -202,6 +212,8 @@ export default function ExperienceComponent() {
           e.target.classList.toggle("hidden");
           expContainerRef.current.classList.toggle("hidden");
           savedExpRef.current.classList.toggle("hidden");
+          expBeginYearRef.current.textContent = "Year";
+          expEndYearRef.current.textContent = "Year";
         }}
       >
         + New Experience
