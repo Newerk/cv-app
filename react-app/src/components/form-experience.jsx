@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import DateRange from "./date-range";
+import DateRange, { yearStorage } from "./date-range";
 import { v4 as uuidv4 } from "uuid";
 import { savedExperiencesData } from "../data/savedExperiences";
 
@@ -106,8 +106,8 @@ export default function ExperienceComponent() {
         id: uuidv4(),
         position: document.getElementById("position").value,
         employer: document.getElementById("company").value,
-        beginDate: document.getElementById("begin-date").value,
-        endDate: document.getElementById("end-date").value,
+        beginDate: yearStorage.beginYear,
+        endDate: yearStorage.endYear,
         bulletPoints: [...bulletpoint], //need to take bulletpoints and copy it here
       },
     ]);
