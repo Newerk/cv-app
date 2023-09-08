@@ -89,16 +89,12 @@ export default function ExperienceComponent() {
   const savedExpRef = useRef(null);
 
   function formReset() {
-    // let resetYears = [...savedExperiences];
-    // resetYears[resetYears.length - 1].beginDate = "Year";
-    // resetYears[resetYears.length - 1].endDate = "Year";
-    // setSavedExperiences(resetYears);
 
     //clear text from inputs
     document.getElementById("position").value = "";
     document.getElementById("company").value = "";
-    // document.getElementById("begin-date").value = ""; //not working due to how react works
-    // document.getElementById("end-date").value = ""; //not working due to how react works
+    expBeginYearRef.current.textContent = "Year";
+    expEndYearRef.current.textContent = "Year";
     setBulletPoint([]);
   }
 
@@ -212,8 +208,6 @@ export default function ExperienceComponent() {
           e.target.classList.toggle("hidden");
           expContainerRef.current.classList.toggle("hidden");
           savedExpRef.current.classList.toggle("hidden");
-          expBeginYearRef.current.textContent = "Year";
-          expEndYearRef.current.textContent = "Year";
         }}
       >
         + New Experience
