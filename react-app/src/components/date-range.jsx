@@ -12,10 +12,8 @@ export const yearStorage = {
   endYear: "",
 };
 
-export let expBeginYearRef = undefined
-export let expEndYearRef = undefined
-
-
+export let expBeginYearRef = undefined;
+export let expEndYearRef = undefined;
 
 function MonthSelection({ data, handler }) {
   return (
@@ -62,11 +60,8 @@ export default function DateRange() {
   const beginInputsRef = useRef(null);
   const endInputsRef = useRef(null);
 
-  expBeginYearRef = useRef(null)
-  expEndYearRef = useRef(null)
-
-
-
+  expBeginYearRef = useRef(null);
+  expEndYearRef = useRef(null);
 
   const handleMonthSelection = (e) => {
     if (
@@ -131,7 +126,8 @@ export default function DateRange() {
           >
             {beginMonth}
           </button>
-          <button ref={expBeginYearRef}
+          <button
+            ref={expBeginYearRef}
             className="year-btn"
             onClick={(e) => {
               yearSelectRef.current.classList.toggle("hidden");
@@ -166,7 +162,8 @@ export default function DateRange() {
           >
             {endMonth}
           </button>
-          <button ref={expEndYearRef}
+          <button
+            ref={expEndYearRef}
             className="year-btn"
             onClick={(e) => {
               yearSelectRef.current.classList.toggle("hidden");
@@ -187,11 +184,20 @@ export default function DateRange() {
             type="checkbox"
             name="present"
             id="present-cb"
-            onChange={() =>
+            onChange={(e) => {
               endInputsRef.current
                 .querySelector(".buttons-wrapper")
-                .classList.toggle("hidden")
-            }
+                .classList.toggle("hidden");
+
+              yearSelectRef.current.classList.add("hidden");
+              monthSelectRef.current.classList.add("hidden");
+
+              if (e.target.checked) {
+                yearStorage.endYear = "Present";
+              } else {
+                yearStorage.endYear = "";
+              }
+            }}
           />
           <label htmlFor="present-cb">Present</label>
         </div>
