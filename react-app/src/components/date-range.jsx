@@ -10,6 +10,17 @@ import "../date-range.css";
 export const yearStorage = {
   beginYear: "",
   endYear: "",
+
+  /*  will probably replace the the code above with this
+  experience: {
+    beginYear: "",
+    endYear: "",
+  },
+  education: {
+    beginYear: "",
+    endYear: "",
+  },
+ */
 };
 
 function MonthSelection({ data, handler }) {
@@ -44,6 +55,7 @@ function YearSelection({ handler }) {
   );
 }
 
+//perhaps pass a state so that DateRange can handle itself based on the component it is used inside of so that nothing has to be hard coded
 export default function DateRange() {
   const [beginMonth, setBeginMonth] = useState("Month");
   const [beginYear, setBeginYear] = useState("Year");
@@ -186,6 +198,20 @@ export default function DateRange() {
 
               if (e.target.checked) {
                 yearStorage.endYear = "Present";
+                if (
+                  e.target.parentElement.parentElement.parentElement.parentElement.classList.contains(
+                    "education-container"
+                  )
+                ) {
+                  //do something
+                }
+                if (
+                  e.target.parentElement.parentElement.parentElement.parentElement.classList.contains(
+                    "experience-container"
+                  )
+                ) {
+                  //do something
+                }
               } else {
                 yearStorage.endYear = "";
               }
