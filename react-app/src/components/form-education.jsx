@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { savedEducationData } from "../data/savedEducation";
 import DateRange from "./date-range";
 
@@ -27,6 +27,9 @@ function School() {
 export default function EducationComponent() {
   const [savedEducation, setSavedEducation] = useState(savedEducationData);
 
+  const savedEduRef = useRef(null);
+  const eduContainerRef = useRef(null);
+
   function SavedEducationList() {
     return (
       <>
@@ -49,12 +52,26 @@ export default function EducationComponent() {
       <h1>
         Education <span>*optional*</span>
       </h1>
-      <SavedEducationList />
-      <button>+ New Education</button>
-      <div>
-        <School />
-        <Degree />
-        <DateRange />
+      <div ref={savedEduRef}>
+        <SavedEducationList />
+      </div>
+      <button
+        onClick={() => {
+          eduContainerRef.current.classList.toggle("hidden");
+          savedEduRef.current.classList.toggle("hidden");
+        }}
+      >
+        + New Education
+      </button>
+
+      <div ref={eduContainerRef} className="education-container hidden">
+        <div>
+          <School />
+          <Degree />
+          <DateRange />
+        </div>
+        <button className="education cancel-btn">Cancel</button>
+        <button className="education save-btn">Save</button>
       </div>
     </>
   );
