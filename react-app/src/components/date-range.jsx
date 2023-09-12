@@ -11,7 +11,7 @@ export const yearStorage = {
   beginYear: "",
   endYear: "",
 
-  /*  will probably replace the the code above with this
+  /*  will probably replace the the code above with something like this
   experience: {
     beginYear: "",
     endYear: "",
@@ -55,7 +55,11 @@ function YearSelection({ handler }) {
   );
 }
 
-//perhaps pass a state so that DateRange can handle itself based on the component it is used inside of so that nothing has to be hard coded
+//perhaps pass a prop so that DateRange can handle itself based on the component it is used inside of so that nothing has to be hard coded
+/*Areas that need to be refactored once I add a prop:
+1. yearStorage
+2. the two if statements in my Present Checkbox Input Elements
+ */
 export default function DateRange() {
   const [beginMonth, setBeginMonth] = useState("Month");
   const [beginYear, setBeginYear] = useState("Year");
