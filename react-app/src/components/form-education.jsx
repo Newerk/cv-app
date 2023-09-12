@@ -29,6 +29,7 @@ export default function EducationComponent() {
 
   const savedEduRef = useRef(null);
   const eduContainerRef = useRef(null);
+  const addEduBtnRef = useRef(null);
 
   function SavedEducationList() {
     return (
@@ -47,8 +48,29 @@ export default function EducationComponent() {
     );
   }
 
+  const toggleFormVisiblity = () => {
+    savedEduRef.current.classList.toggle("hidden");
+    eduContainerRef.current.classList.toggle("hidden");
+    addEduBtnRef.current.classList.toggle("hidden");
+  };
+
+  const formReset = () => {
+    //clear text from inputs
+    document.getElementById("school").value = "";
+    document.getElementById("degree").value = "";
+    document
+      .querySelector(".education-section")
+      .querySelector(".begin-date-inputs")
+      .querySelector(".year-btn").textContent = "Year";
+
+    document
+      .querySelector(".education-section")
+      .querySelector(".end-date-inputs")
+      .querySelector(".year-btn").textContent = "Year";
+  };
+
   return (
-    <>
+    <div className="education-section">
       <h1>
         Education <span>*optional*</span>
       </h1>
@@ -56,9 +78,11 @@ export default function EducationComponent() {
         <SavedEducationList />
       </div>
       <button
-        onClick={() => {
+        ref={addEduBtnRef}
+        onClick={(e) => {
           eduContainerRef.current.classList.toggle("hidden");
           savedEduRef.current.classList.toggle("hidden");
+          e.target.classList.toggle("hidden");
         }}
       >
         + New Education
@@ -70,9 +94,24 @@ export default function EducationComponent() {
           <Degree />
           <DateRange />
         </div>
-        <button className="education cancel-btn">Cancel</button>
-        <button className="education save-btn">Save</button>
+        <button
+          className="education cancel-btn"
+          onClick={() => {
+            toggleFormVisiblity();
+            formReset();
+          }}
+        >
+          Cancel
+        </button>
+        <button
+          className="education save-btn"
+          onClick={() => {
+            toggleFormVisiblity();
+          }}
+        >
+          Save
+        </button>
       </div>
-    </>
+    </div>
   );
 }

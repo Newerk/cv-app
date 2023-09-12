@@ -1,9 +1,5 @@
 import { useRef, useState } from "react";
-import DateRange, {
-  expBeginYearRef,
-  expEndYearRef,
-  yearStorage,
-} from "./date-range";
+import DateRange, { yearStorage } from "./date-range";
 import { v4 as uuidv4 } from "uuid";
 import { savedExperiencesData } from "../data/savedExperiences";
 
@@ -89,12 +85,19 @@ export default function ExperienceComponent() {
   const savedExpRef = useRef(null);
 
   function formReset() {
-
     //clear text from inputs
     document.getElementById("position").value = "";
     document.getElementById("company").value = "";
-    expBeginYearRef.current.textContent = "Year";
-    expEndYearRef.current.textContent = "Year";
+    document
+      .querySelector(".experience-section")
+      .querySelector(".begin-date-inputs")
+      .querySelector(".year-btn").textContent = "Year";
+
+    document
+      .querySelector(".experience-section")
+      .querySelector(".end-date-inputs")
+      .querySelector(".year-btn").textContent = "Year";
+
     setBulletPoint([]);
   }
 
@@ -195,7 +198,7 @@ export default function ExperienceComponent() {
   }
 
   return (
-    <>
+    <div className="experience-section">
       <h1>Experience</h1>
 
       <div ref={savedExpRef}>
@@ -238,6 +241,6 @@ export default function ExperienceComponent() {
           Save
         </button>
       </div>
-    </>
+    </div>
   );
 }

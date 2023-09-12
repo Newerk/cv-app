@@ -12,9 +12,6 @@ export const yearStorage = {
   endYear: "",
 };
 
-export let expBeginYearRef = undefined;
-export let expEndYearRef = undefined;
-
 function MonthSelection({ data, handler }) {
   return (
     <div className="months-container">
@@ -59,9 +56,6 @@ export default function DateRange() {
 
   const beginInputsRef = useRef(null);
   const endInputsRef = useRef(null);
-
-  expBeginYearRef = useRef(null);
-  expEndYearRef = useRef(null);
 
   const handleMonthSelection = (e) => {
     if (
@@ -127,7 +121,6 @@ export default function DateRange() {
             {beginMonth}
           </button>
           <button
-            ref={expBeginYearRef}
             className="year-btn"
             onClick={(e) => {
               yearSelectRef.current.classList.toggle("hidden");
@@ -163,7 +156,6 @@ export default function DateRange() {
             {endMonth}
           </button>
           <button
-            ref={expEndYearRef}
             className="year-btn"
             onClick={(e) => {
               yearSelectRef.current.classList.toggle("hidden");
