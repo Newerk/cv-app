@@ -25,12 +25,25 @@ function School() {
   );
 }
 
+function Location() {
+  return (
+    <>
+      Location
+      <label htmlFor="edu-location">
+        <input type="text" name="location" id="edu-location" />
+      </label>
+    </>
+  );
+}
+
 export default function EducationComponent() {
   const [savedEducation, setSavedEducation] = useState(savedEducationData);
   const [presentBoolean, setPresentBoolean] = useState(false);
 
-  const [eduYearStorage, setEduYearStorage] = useState({
+  const [educateStorage, seteducateStorage] = useState({
+    beginMonth: "",
     beginYear: "",
+    endMonth: "",
     endYear: "",
   });
 
@@ -82,8 +95,12 @@ export default function EducationComponent() {
         school: document.getElementById("school").value,
         degree: document.getElementById("degree").value,
         location: document.getElementById("edu-location").value,
-        beginDate: { month: "", year: "" },
-        endDate: { month: "", year: "", present: presentBoolean },
+        beginDate: { month: "", year: educateStorage.beginYear },
+        endDate: {
+          month: "",
+          year: educateStorage.endYear,
+          present: presentBoolean,
+        },
       },
     ]);
 
@@ -113,10 +130,11 @@ export default function EducationComponent() {
         <div>
           <School />
           <Degree />
+          <Location />
           <DateRange
             parentRef={eduContainerRef}
-            yearStorage={eduYearStorage}
-            yearStorageSetter={setEduYearStorage}
+            dateStorage={educateStorage}
+            dateStorageSetter={seteducateStorage}
           />
         </div>
         <button

@@ -7,22 +7,6 @@ import "../date-range.css";
 
 //Elements with "focused" toggle will be the element of focus to have its text content change based on the user selection
 
-export const yearStorage = {
-  beginYear: "",
-  endYear: "",
-
-  /*  will probably replace the the code above with something like this
-  experience: {
-    beginYear: "",
-    endYear: "",
-  },
-  education: {
-    beginYear: "",
-    endYear: "",
-  },
- */
-};
-
 function MonthSelection({ data, handler }) {
   return (
     <div className="months-container">
@@ -57,13 +41,13 @@ function YearSelection({ handler }) {
 
 //perhaps pass a prop so that DateRange can handle itself based on the component it is used inside of so that nothing has to be hard coded
 /*Areas that need to be refactored once I add a prop:
-1. yearStorage
+1. dateStorage
 2. the two if statements in my Present Checkbox Input Elements
  */
 export default function DateRange({
   parentRef,
-  yearStorage,
-  yearStorageSetter,
+  dateStorage,
+  dateStorageSetter,
 }) {
   const [beginMonth, setBeginMonth] = useState("Month");
   const [beginYear, setBeginYear] = useState("Year");
@@ -84,8 +68,10 @@ export default function DateRange({
         .classList.contains("focused")
     ) {
       setBeginMonth(e.target.textContent);
+      dateStorageSetter({ ...dateStorage, beginMonth: e.target.textContent });
     } else {
       setEndMonth(e.target.textContent);
+      dateStorageSetter({ ...dateStorage, endMonth: e.target.textContent });
     }
 
     monthSelectRef.current.classList.toggle("hidden");
@@ -98,12 +84,10 @@ export default function DateRange({
         .classList.contains("focused")
     ) {
       setBeginYear(e.target.textContent);
-      yearStorageSetter({ ...yearStorage, beginYear: e.target.textContent });
-      // yearStorage.beginYear = e.target.textContent;
+      dateStorageSetter({ ...dateStorage, beginYear: e.target.textContent });
     } else {
       setEndYear(e.target.textContent);
-      yearStorageSetter({ ...yearStorage, endYear: e.target.textContent });
-      // yearStorage.endYear = e.target.textContent;
+      dateStorageSetter({ ...dateStorage, endYear: e.target.textContent });
     }
 
     yearSelectRef.current.classList.toggle("hidden");
@@ -207,7 +191,7 @@ export default function DateRange({
               monthSelectRef.current.classList.add("hidden");
 
               if (e.target.checked) {
-                yearStorage.endYear = "Present";
+                dateStorage.endYear = "Present";
                 if (
                   parentRef.current.classList.contains("education-container")
                 ) {
@@ -220,7 +204,7 @@ export default function DateRange({
                   //do something
                 }
               } else {
-                yearStorage.endYear = "";
+                dateStorage.endYear = "";
               }
             }}
           />

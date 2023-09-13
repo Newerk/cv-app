@@ -80,8 +80,10 @@ export default function ExperienceComponent() {
 
   const [bulletpoint, setBulletPoint] = useState([]);
 
-  const [expYearStorage, setExpYearStorage] = useState({
+  const [expDateStorage, setexpDateStorage] = useState({
+    beginMonth: "",
     beginYear: "",
+    endMonth: "",
     endYear: "",
   });
 
@@ -117,8 +119,8 @@ export default function ExperienceComponent() {
         id: uuidv4(),
         position: document.getElementById("position").value,
         employer: document.getElementById("company").value,
-        beginDate: expYearStorage.beginYear,
-        endDate: expYearStorage.endYear,
+        beginDate: expDateStorage.beginYear,
+        endDate: expDateStorage.endYear,
         bulletPoints: [...bulletpoint], //need to take bulletpoints and copy it here
       },
     ]);
@@ -224,8 +226,8 @@ export default function ExperienceComponent() {
           <Company />
           <DateRange
             parentRef={expContainerRef}
-            yearStorage={expYearStorage}
-            yearStorageSetter={setExpYearStorage}
+            yearStorage={expDateStorage}
+            yearStorageSetter={setexpDateStorage}
           />
           <Bulletpoints />
         </div>
