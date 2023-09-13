@@ -60,7 +60,11 @@ function YearSelection({ handler }) {
 1. yearStorage
 2. the two if statements in my Present Checkbox Input Elements
  */
-export default function DateRange({ parentRef, yearStorage ,yearStorageSetter }) {
+export default function DateRange({
+  parentRef,
+  yearStorage,
+  yearStorageSetter,
+}) {
   const [beginMonth, setBeginMonth] = useState("Month");
   const [beginYear, setBeginYear] = useState("Year");
 
@@ -94,10 +98,12 @@ export default function DateRange({ parentRef, yearStorage ,yearStorageSetter })
         .classList.contains("focused")
     ) {
       setBeginYear(e.target.textContent);
-      yearStorage.beginYear = e.target.textContent;
+      yearStorageSetter({ ...yearStorage, beginYear: e.target.textContent });
+      // yearStorage.beginYear = e.target.textContent;
     } else {
       setEndYear(e.target.textContent);
-      yearStorage.endYear = e.target.textContent;
+      yearStorageSetter({ ...yearStorage, endYear: e.target.textContent });
+      // yearStorage.endYear = e.target.textContent;
     }
 
     yearSelectRef.current.classList.toggle("hidden");
