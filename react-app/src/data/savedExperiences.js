@@ -6,7 +6,7 @@ export let savedExperiencesData = [
     position: "Software Engineer",
     employer: "Some Tech Place",
     beginDate: { month: "", year: "2020" },
-    endDate: { month: "", year: "Present" },
+    endDate: { month: "", year: "Present", present: false },
     bulletPoints: [], //most recent saved project will be copied here (...bulletpoints). when this is being edited, it will pull the bulletpoint info from here instead
   },
   {
@@ -14,7 +14,7 @@ export let savedExperiencesData = [
     position: "Accountant",
     employer: "Paperboy Finance, LLC",
     beginDate: { month: "", year: "2009" },
-    endDate: { month: "", year: "2020" },
+    endDate: { month: "", year: "2020", present: false },
     bulletPoints: [], //most recent saved project will be copied here (...bulletpoints). when this is being edited, it will pull the bulletpoint info from here instead
   },
   {
@@ -22,7 +22,7 @@ export let savedExperiencesData = [
     position: "Teacher",
     employer: "P.S. Ovr 9000",
     beginDate: { month: "", year: "2005" },
-    endDate: { month: "", year: "2008" },
+    endDate: { month: "", year: "2008", present: false },
     bulletPoints: [], //most recent saved project will be copied here (...bulletpoints). when this is being edited, it will pull the bulletpoint info from here instead
   },
 ];

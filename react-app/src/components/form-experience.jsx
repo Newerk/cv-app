@@ -77,9 +77,8 @@ function SaveAndCancelBtns() {
 export default function ExperienceComponent() {
   const [savedExperiences, setSavedExperiences] =
     useState(savedExperiencesData);
-
+  const [presentBoolean, setPresentBoolean] = useState(false);
   const [bulletpoint, setBulletPoint] = useState([]);
-
   const [expDateStorage, setexpDateStorage] = useState({
     beginMonth: "",
     beginYear: "",
@@ -119,8 +118,15 @@ export default function ExperienceComponent() {
         id: uuidv4(),
         position: document.getElementById("position").value,
         employer: document.getElementById("company").value,
-        beginDate: expDateStorage.beginYear,
-        endDate: expDateStorage.endYear,
+        beginDate: {
+          month: expDateStorage.beginMonth,
+          year: expDateStorage.beginYear,
+        },
+        endDate: {
+          month: expDateStorage.endMonth,
+          year: expDateStorage.endYear,
+          present: presentBoolean,
+        },
         bulletPoints: [...bulletpoint], //need to take bulletpoints and copy it here
       },
     ]);
