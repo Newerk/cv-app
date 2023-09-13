@@ -95,9 +95,12 @@ export default function EducationComponent() {
         school: document.getElementById("school").value,
         degree: document.getElementById("degree").value,
         location: document.getElementById("edu-location").value,
-        beginDate: { month: "", year: educateStorage.beginYear },
+        beginDate: {
+          month: educateStorage.beginMonth,
+          year: educateStorage.beginYear,
+        },
         endDate: {
-          month: "",
+          month: educateStorage.endMonth,
           year: educateStorage.endYear,
           present: presentBoolean,
         },

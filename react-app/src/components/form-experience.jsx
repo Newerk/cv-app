@@ -194,7 +194,7 @@ export default function ExperienceComponent() {
               <strong>{experience.position}</strong>, {experience.employer}
             </p>
             <p>
-              {experience.beginDate}-{experience.endDate}
+              {experience.beginDate.year}-{experience.endDate.year}
             </p>
           </div>
         ))}
