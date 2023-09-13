@@ -27,7 +27,12 @@ function School() {
 
 export default function EducationComponent() {
   const [savedEducation, setSavedEducation] = useState(savedEducationData);
-  const [presentBoolean, setPresentBoolean] = useState(false)
+  const [presentBoolean, setPresentBoolean] = useState(false);
+
+  const [eduYearStorage, setEduYearStorage] = useState({
+    beginYear: "",
+    endYear: "",
+  });
 
   const savedEduRef = useRef(null);
   const eduContainerRef = useRef(null);
@@ -60,13 +65,11 @@ export default function EducationComponent() {
     //clear text from inputs
     document.getElementById("school").value = "";
     document.getElementById("degree").value = "";
-    document
-      .querySelector(".education-section")
+    eduContainerRef.current
       .querySelector(".begin-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
 
-    document
-      .querySelector(".education-section")
+    eduContainerRef.current
       .querySelector(".end-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
   }
@@ -110,7 +113,11 @@ export default function EducationComponent() {
         <div>
           <School />
           <Degree />
-          <DateRange />
+          <DateRange
+            parentRef={eduContainerRef}
+            yearStorage={eduYearStorage}
+            yearStorageSetter={setEduYearStorage}
+          />
         </div>
         <button
           className="education cancel-btn"

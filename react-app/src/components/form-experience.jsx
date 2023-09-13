@@ -80,6 +80,11 @@ export default function ExperienceComponent() {
 
   const [bulletpoint, setBulletPoint] = useState([]);
 
+  const [expYearStorage, setExpYearStorage] = useState({
+    beginYear: "",
+    endYear: "",
+  });
+
   const expContainerRef = useRef(null);
   const addExpBtnRef = useRef(null);
   const savedExpRef = useRef(null);
@@ -88,13 +93,11 @@ export default function ExperienceComponent() {
     //clear text from inputs
     document.getElementById("position").value = "";
     document.getElementById("company").value = "";
-    document
-      .querySelector(".experience-section")
+    expContainerRef.current
       .querySelector(".begin-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
 
-    document
-      .querySelector(".experience-section")
+    expContainerRef.current
       .querySelector(".end-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
 
@@ -219,7 +222,11 @@ export default function ExperienceComponent() {
         <div>
           <JobTitle />
           <Company />
-          <DateRange />
+          <DateRange
+            parentRef={expContainerRef}
+            yearStorage={expYearStorage}
+            yearStorageSetter={setExpYearStorage}
+          />
           <Bulletpoints />
         </div>
         <button
