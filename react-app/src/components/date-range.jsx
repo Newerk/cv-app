@@ -44,11 +44,7 @@ function YearSelection({ handler }) {
 1. dateStorage
 2. the two if statements in my Present Checkbox Input Elements
  */
-export default function DateRange({
-  parentRef,
-  dateStorage,
-  dateStorageSetter,
-}) {
+export default function DateRange({ dateStorage, dateStorageSetter, setBoolean }) {
   const [beginMonth, setBeginMonth] = useState("Month");
   const [beginYear, setBeginYear] = useState("Year");
 
@@ -191,21 +187,21 @@ export default function DateRange({
               monthSelectRef.current.classList.add("hidden");
 
               if (e.target.checked) {
-                dateStorage.endYear = "Present";
-                if (
-                  parentRef.current.classList.contains("education-container")
-                ) {
-                  //do something
-                  parentRef.current.style.backgroundColor = "red";
-                }
-                if (
-                  parentRef.current.classList.contains("experience-container")
-                ) {
-                  //do something
-                }
+                setBoolean(true)
+                // dateStorageSetter({
+                //   ...dateStorage,
+                //   endDate: { ...dateStorage.endDate, present: true },
+                // });
               } else {
-                dateStorage.endYear = "";
+                setBoolean(false)
+
+                // dateStorageSetter({
+                //   ...dateStorage,
+                //   endDate: { ...dateStorage.endDate, present: false },
+                // });
               }
+
+              console.log(dateStorage.endDate);
             }}
           />
           <label htmlFor="present-cb">Present</label>

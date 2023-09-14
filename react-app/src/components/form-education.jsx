@@ -45,6 +45,7 @@ export default function EducationComponent() {
     beginYear: "",
     endMonth: "",
     endYear: "",
+    present: presentBoolean,
   });
 
   const savedEduRef = useRef(null);
@@ -78,6 +79,7 @@ export default function EducationComponent() {
     //clear text from inputs
     document.getElementById("school").value = "";
     document.getElementById("degree").value = "";
+    document.getElementById("edu-location").value = "";
     eduContainerRef.current
       .querySelector(".begin-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
@@ -85,6 +87,10 @@ export default function EducationComponent() {
     eduContainerRef.current
       .querySelector(".end-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
+    eduContainerRef.current
+      .querySelector(".end-date-inputs")
+      .querySelector(".checkbox")
+      .querySelector("#present-cb").checked = false;
   }
 
   const handleSaveEducation = () => {
@@ -106,6 +112,8 @@ export default function EducationComponent() {
         },
       },
     ]);
+
+    console.log(savedEducation);
 
     formReset();
   };
@@ -138,8 +146,10 @@ export default function EducationComponent() {
             parentRef={eduContainerRef}
             dateStorage={educateStorage}
             dateStorageSetter={setEducateStorage}
+            setBoolean={setPresentBoolean}
           />
         </div>
+        {console.log(savedEducation)}
         <button
           className="education cancel-btn"
           onClick={() => {

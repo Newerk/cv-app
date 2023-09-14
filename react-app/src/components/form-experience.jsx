@@ -85,6 +85,7 @@ export default function ExperienceComponent() {
     beginYear: "",
     endMonth: "",
     endYear: "",
+    present: presentBoolean,
   });
 
   const expContainerRef = useRef(null);
@@ -102,6 +103,11 @@ export default function ExperienceComponent() {
     expContainerRef.current
       .querySelector(".end-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
+
+    expContainerRef.current
+      .querySelector(".end-date-inputs")
+      .querySelector(".checkbox")
+      .querySelector("#present-cb").checked = false;
 
     setBulletPoint([]);
   }
@@ -235,6 +241,7 @@ export default function ExperienceComponent() {
             parentRef={expContainerRef}
             dateStorage={expDateStorage}
             dateStorageSetter={setExpDateStorage}
+            setBoolean={setPresentBoolean}
           />
           <Bulletpoints />
         </div>
