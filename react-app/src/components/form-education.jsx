@@ -40,7 +40,7 @@ export default function EducationComponent() {
   const [savedEducation, setSavedEducation] = useState(savedEducationData);
   const [presentBoolean, setPresentBoolean] = useState(false);
 
-  const [educateStorage, seteducateStorage] = useState({
+  const [educateStorage, setEducateStorage] = useState({
     beginMonth: "",
     beginYear: "",
     endMonth: "",
@@ -137,7 +137,7 @@ export default function EducationComponent() {
           <DateRange
             parentRef={eduContainerRef}
             dateStorage={educateStorage}
-            dateStorageSetter={seteducateStorage}
+            dateStorageSetter={setEducateStorage}
           />
         </div>
         <button

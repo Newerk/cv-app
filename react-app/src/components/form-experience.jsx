@@ -79,7 +79,8 @@ export default function ExperienceComponent() {
     useState(savedExperiencesData);
   const [presentBoolean, setPresentBoolean] = useState(false);
   const [bulletpoint, setBulletPoint] = useState([]);
-  const [expDateStorage, setexpDateStorage] = useState({
+
+  const [expDateStorage, setExpDateStorage] = useState({
     beginMonth: "",
     beginYear: "",
     endMonth: "",
@@ -232,8 +233,8 @@ export default function ExperienceComponent() {
           <Company />
           <DateRange
             parentRef={expContainerRef}
-            yearStorage={expDateStorage}
-            yearStorageSetter={setexpDateStorage}
+            dateStorage={expDateStorage}
+            dateStorageSetter={setExpDateStorage}
           />
           <Bulletpoints />
         </div>
