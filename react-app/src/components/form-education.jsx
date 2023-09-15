@@ -91,6 +91,12 @@ export default function EducationComponent() {
       .querySelector(".end-date-inputs")
       .querySelector(".checkbox")
       .querySelector("#present-cb").checked = false;
+
+    eduContainerRef.current
+      .querySelector(".date-range-component")
+      .querySelector(".end-date-inputs")
+      .querySelector(".buttons-wrapper")
+      .classList.remove("hidden");
   }
 
   const handleSaveEducation = () => {

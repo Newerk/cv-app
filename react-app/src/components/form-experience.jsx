@@ -109,6 +109,12 @@ export default function ExperienceComponent() {
       .querySelector(".checkbox")
       .querySelector("#present-cb").checked = false;
 
+    expContainerRef.current
+      .querySelector(".date-range-component")
+      .querySelector(".end-date-inputs")
+      .querySelector(".buttons-wrapper")
+      .classList.remove("hidden");
+
     setBulletPoint([]);
   }
 
