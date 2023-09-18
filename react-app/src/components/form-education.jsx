@@ -164,7 +164,11 @@ export default function EducationComponent() {
     console.log(savedEducation);
 
     formReset();
-    setCurrentSelection({ ...currentSelection, is_editing: false });
+    setCurrentSelection({
+      ...currentSelection,
+      current_id: "",
+      is_editing: false,
+    });
   };
 
   function handleEditingEducation(id) {
