@@ -39,6 +39,7 @@ function Location() {
 export default function EducationComponent() {
   const [savedEducation, setSavedEducation] = useState(savedEducationData);
   const [presentBoolean, setPresentBoolean] = useState(false);
+  const [editingMode, setEditingMode] = useState(false);
 
   const [educateStorage, setEducateStorage] = useState({
     beginMonth: "",
@@ -56,7 +57,11 @@ export default function EducationComponent() {
     return (
       <>
         {savedEducation.map((education) => (
-          <div key={education.id} className="saved-education">
+          <div
+            key={education.id}
+            className="saved-education"
+            onClick={() => handleEditingEducation(education.id)}
+          >
             <p>
               <strong>{education.degree}</strong>, {education.school}
             </p>
@@ -124,6 +129,36 @@ export default function EducationComponent() {
     formReset();
   };
 
+  function handleEditingEducation(id) {
+    setEditingMode(true);
+
+    eduContainerRef.current.classList.toggle("hidden");
+    savedEduRef.current.classList.toggle("hidden");
+    addEduBtnRef.current.classList.toggle("hidden");
+
+    const currentEdu = savedEducation.find((edu) => edu.id === id);
+
+    eduContainerRef.current.querySelector("#school").value = currentEdu.school;
+    eduContainerRef.current.querySelector("#degree").value = currentEdu.degree;
+    eduContainerRef.current.querySelector("#edu-location").value =
+      currentEdu.location;
+    eduContainerRef.current
+      .querySelector(".begin-date-inputs")
+      .querySelector(".month-btn").textContent = currentEdu.beginDate.month;
+    eduContainerRef.current
+      .querySelector(".begin-date-inputs")
+      .querySelector(".year-btn").textContent = currentEdu.beginDate.year;
+    eduContainerRef.current
+      .querySelector(".end-date-inputs")
+      .querySelector(".month-btn").textContent = currentEdu.endDate.year;
+    eduContainerRef.current
+      .querySelector(".end-date-inputs")
+      .querySelector(".year-btn").textContent = currentEdu.endDate.year;
+
+    eduContainerRef.current.querySelector("#present-cb").checked =
+      currentEdu.endDate.present;
+  }
+
   return (
     <div className="education-section">
       <h1>
@@ -170,6 +205,30 @@ export default function EducationComponent() {
           onClick={() => {
             toggleFormVisiblity();
             handleSaveEducation();
+
+            if (editingMode === true) {
+              // savedEducation[savedEducation.indexOf(currentEdu)].school =
+              //   currentEdu.school;
+              // savedEducation[savedEducation.indexOf(currentEdu)].degree =
+              //   currentEdu.degree;
+              // savedEducation[savedEducation.indexOf(currentEdu)].location =
+              //   currentEdu.location;
+              // savedEducation[savedEducation.indexOf(currentEdu)].beginDate.month =
+              //   currentEdu.beginDate.month;
+              // savedEducation[savedEducation.indexOf(currentEdu)].beginDate.year =
+              //   currentEdu.beginDate.year;
+              // savedEducation[savedEducation.indexOf(currentEdu)].endDate.month =
+              //   currentEdu.endDate.month;
+              // savedEducation[savedEducation.indexOf(currentEdu)].endDate.year =
+              //   currentEdu.endDate.year;
+              // savedEducation[savedEducation.indexOf(currentEdu)].endDate.present =
+              //   currentEdu.endDate.present;
+              // setEducateStorage(...savedEducation);
+              console.log(`editing mode: ${editingMode}`);
+
+            }
+            setEditingMode(false);
+
           }}
         >
           Save
