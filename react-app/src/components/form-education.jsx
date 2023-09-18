@@ -39,7 +39,10 @@ function Location() {
 export default function EducationComponent() {
   const [savedEducation, setSavedEducation] = useState(savedEducationData);
   const [presentBoolean, setPresentBoolean] = useState(false);
-  const [editingMode, setEditingMode] = useState(false);
+  const [currentSelection, setCurrentSelection] = useState({
+    current_id: "",
+    is_editing: false,
+  });
 
   const [educateStorage, setEducateStorage] = useState({
     beginMonth: "",
@@ -105,32 +108,71 @@ export default function EducationComponent() {
   }
 
   const handleSaveEducation = () => {
-    setSavedEducation([
-      ...savedEducation,
-      {
-        id: uuidv4(),
-        school: document.getElementById("school").value,
-        degree: document.getElementById("degree").value,
-        location: document.getElementById("edu-location").value,
+    if (currentSelection.is_editing === true) {
+      const selectedEdu = savedEducation.find(
+        (edu) => edu.id === currentSelection.current_id
+      );
+
+      let copy = [...savedEducation];
+      copy[copy.indexOf(selectedEdu)] = {
+        id: currentSelection.current_id,
+        school: eduContainerRef.current.querySelector("#school").value,
+        degree: eduContainerRef.current.querySelector("#degree").value,
+        location: eduContainerRef.current.querySelector("#edu-location").value,
         beginDate: {
-          month: educateStorage.beginMonth,
-          year: educateStorage.beginYear,
+          month: eduContainerRef.current
+            .querySelector(".begin-date-inputs")
+            .querySelector(".month-btn").textContent,
+          year: eduContainerRef.current
+            .querySelector(".begin-date-inputs")
+            .querySelector(".year-btn").textContent,
         },
         endDate: {
-          month: educateStorage.endMonth,
-          year: educateStorage.endYear,
-          present: presentBoolean,
+          month: eduContainerRef.current
+            .querySelector(".end-date-inputs")
+            .querySelector(".month-btn").textContent,
+          year: eduContainerRef.current
+            .querySelector(".end-date-inputs")
+            .querySelector(".year-btn").textContent,
+          present: eduContainerRef.current.querySelector("#present-cb").checked,
         },
-      },
-    ]);
+      };
+
+      setSavedEducation([...copy]);
+    } else {
+      setSavedEducation([
+        ...savedEducation,
+        {
+          id: uuidv4(),
+          school: eduContainerRef.current.querySelector("#school").value,
+          degree: eduContainerRef.current.querySelector("#degree").value,
+          location:
+            eduContainerRef.current.querySelector("#edu-location").value,
+          beginDate: {
+            month: educateStorage.beginMonth,
+            year: educateStorage.beginYear,
+          },
+          endDate: {
+            month: educateStorage.endMonth,
+            year: educateStorage.endYear,
+            present: presentBoolean,
+          },
+        },
+      ]);
+    }
 
     console.log(savedEducation);
 
     formReset();
+    setCurrentSelection({ ...currentSelection, is_editing: false });
   };
 
   function handleEditingEducation(id) {
-    setEditingMode(true);
+    setCurrentSelection({
+      ...currentSelection,
+      is_editing: true,
+      current_id: id,
+    });
 
     eduContainerRef.current.classList.toggle("hidden");
     savedEduRef.current.classList.toggle("hidden");
@@ -205,30 +247,6 @@ export default function EducationComponent() {
           onClick={() => {
             toggleFormVisiblity();
             handleSaveEducation();
-
-            if (editingMode === true) {
-              // savedEducation[savedEducation.indexOf(currentEdu)].school =
-              //   currentEdu.school;
-              // savedEducation[savedEducation.indexOf(currentEdu)].degree =
-              //   currentEdu.degree;
-              // savedEducation[savedEducation.indexOf(currentEdu)].location =
-              //   currentEdu.location;
-              // savedEducation[savedEducation.indexOf(currentEdu)].beginDate.month =
-              //   currentEdu.beginDate.month;
-              // savedEducation[savedEducation.indexOf(currentEdu)].beginDate.year =
-              //   currentEdu.beginDate.year;
-              // savedEducation[savedEducation.indexOf(currentEdu)].endDate.month =
-              //   currentEdu.endDate.month;
-              // savedEducation[savedEducation.indexOf(currentEdu)].endDate.year =
-              //   currentEdu.endDate.year;
-              // savedEducation[savedEducation.indexOf(currentEdu)].endDate.present =
-              //   currentEdu.endDate.present;
-              // setEducateStorage(...savedEducation);
-              console.log(`editing mode: ${editingMode}`);
-
-            }
-            setEditingMode(false);
-
           }}
         >
           Save
