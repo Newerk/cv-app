@@ -109,6 +109,13 @@ export default function EducationComponent() {
   }
 
   const handleSaveEducation = () => {
+    const selectedYear =
+      eduContainerRef.current.querySelector("#present-cb").checked === true
+        ? educateStorage.endYear
+        : eduContainerRef.current
+            .querySelector(".end-date-inputs")
+            .querySelector(".year-btn").textContent;
+
     if (currentSelection.is_editing === true) {
       const selectedEdu = savedEducation.find(
         (edu) => edu.id === currentSelection.current_id
@@ -132,12 +139,9 @@ export default function EducationComponent() {
           month: eduContainerRef.current
             .querySelector(".end-date-inputs")
             .querySelector(".month-btn").textContent,
-          year: eduContainerRef.current
-            .querySelector(".end-date-inputs")
-            .querySelector(".year-btn").textContent,
-          present: 
-              eduContainerRef.current.querySelector("#present-cb").checked
-        }
+          year: selectedYear,
+          present: eduContainerRef.current.querySelector("#present-cb").checked,
+        },
       };
 
       setSavedEducation([...copy]);
