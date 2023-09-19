@@ -114,6 +114,7 @@ export default function EducationComponent() {
     eduContainerRef.current
       .querySelector(".end-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
+
     eduContainerRef.current
       .querySelector(".end-date-inputs")
       .querySelector(".checkbox")
@@ -260,7 +261,6 @@ export default function EducationComponent() {
           <Degree />
           <Location />
           <DateRange
-            parentRef={eduContainerRef}
             dateStorage={educateStorage}
             dateStorageSetter={setEducateStorage}
             setBoolean={setPresentBoolean}

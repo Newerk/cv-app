@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
 import DateRange from "./date-range";
 import { v4 as uuidv4 } from "uuid";
@@ -7,8 +8,8 @@ function Company() {
   return (
     <>
       Employer
-      <label htmlFor="company">
-        <input type="text" name="company" id="company" />
+      <label htmlFor="employer">
+        <input type="text" name="employer" id="employer" />
       </label>
     </>
   );
@@ -20,6 +21,17 @@ function JobTitle() {
       Job Title
       <label htmlFor="position">
         <input type="text" name="job title" id="position" />
+      </label>
+    </>
+  );
+}
+
+function Location() {
+  return (
+    <>
+      Location
+      <label htmlFor="exp-location">
+        <input type="text" name="location" id="exp-location" />
       </label>
     </>
   );
@@ -74,11 +86,46 @@ function SaveAndCancelBtns() {
   );
 }
 
+function SavedExperiences({ data, handler, reference }) {
+  return (
+    <>
+      {data.map((experience) => (
+        <div
+          key={experience.id}
+          className="saved-experience"
+          onClick={() => {
+            handler(experience.id);
+
+            //If selected div has a "present" end date, then make sure the end-year & end-month buttons are hidden
+            if (experience.endDate.present === true) {
+              reference.current
+                .querySelector(".end-date-inputs")
+                .querySelector(".buttons-wrapper")
+                .classList.add("hidden");
+            }
+          }}
+        >
+          <p>
+            <strong>{experience.position}</strong>, {experience.employer}
+          </p>
+          <p>
+            {experience.beginDate.year}-{experience.endDate.year}
+          </p>
+        </div>
+      ))}
+    </>
+  );
+}
+
 export default function ExperienceComponent() {
   const [savedExperiences, setSavedExperiences] =
     useState(savedExperiencesData);
   const [presentBoolean, setPresentBoolean] = useState(false);
   const [bulletpoint, setBulletPoint] = useState([]);
+  const [currentSelection, setCurrentSelection] = useState({
+    current_id: "",
+    is_editing: false,
+  });
 
   const [expDateStorage, setExpDateStorage] = useState({
     beginMonth: "",
@@ -95,7 +142,8 @@ export default function ExperienceComponent() {
   function formReset() {
     //clear text from inputs
     document.getElementById("position").value = "";
-    document.getElementById("company").value = "";
+    document.getElementById("employer").value = "";
+    document.getElementById("exp-location").value = "";
 
     expContainerRef.current
       .querySelector(".begin-date-inputs")
@@ -139,7 +187,7 @@ export default function ExperienceComponent() {
       {
         id: uuidv4(),
         position: document.getElementById("position").value,
-        employer: document.getElementById("company").value,
+        employer: document.getElementById("employer").value,
         beginDate: {
           month: expDateStorage.beginMonth,
           year: expDateStorage.beginYear,
@@ -153,8 +201,49 @@ export default function ExperienceComponent() {
       },
     ]);
 
+    console.log(savedExperiences);
     formReset();
   };
+
+  function handleEditingExperience(id) {
+    formReset();
+
+    setCurrentSelection({
+      ...currentSelection,
+      is_editing: true,
+      current_id: id,
+    });
+
+    expContainerRef.current.classList.toggle("hidden");
+    savedExpRef.current.classList.toggle("hidden");
+    addExpBtnRef.current.classList.toggle("hidden");
+
+    const currentExp = savedExperiences.find((exp) => exp.id === id);
+
+    expContainerRef.current.querySelector("#position").value =
+      currentExp.position;
+    expContainerRef.current.querySelector("#employer").value =
+      currentExp.employer;
+    expContainerRef.current.querySelector("#exp-location").value =
+      currentExp.location;
+    expContainerRef.current
+      .querySelector(".begin-date-inputs")
+      .querySelector(".month-btn").textContent = currentExp.beginDate.month;
+    expContainerRef.current
+      .querySelector(".begin-date-inputs")
+      .querySelector(".year-btn").textContent = currentExp.beginDate.year;
+    expContainerRef.current
+      .querySelector(".end-date-inputs")
+      .querySelector(".month-btn").textContent = currentExp.endDate.month;
+    expContainerRef.current
+      .querySelector(".end-date-inputs")
+      .querySelector(".year-btn").textContent = currentExp.endDate.year;
+
+    expContainerRef.current.querySelector("#present-cb").checked =
+      currentExp.endDate.present;
+
+    setBulletPoint([...currentExp.bulletPoints]);
+  }
 
   function Bulletpoints() {
     const handleAddingBullet = () => {
@@ -213,29 +302,16 @@ export default function ExperienceComponent() {
     );
   }
 
-  function SavedExperiences() {
-    return (
-      <>
-        {savedExperiences.map((experience) => (
-          <div key={experience.id} className="saved-experience">
-            <p>
-              <strong>{experience.position}</strong>, {experience.employer}
-            </p>
-            <p>
-              {experience.beginDate.year}-{experience.endDate.year}
-            </p>
-          </div>
-        ))}
-      </>
-    );
-  }
-
   return (
     <div className="experience-section">
       <h1>Experience</h1>
 
       <div ref={savedExpRef}>
-        <SavedExperiences />
+        <SavedExperiences
+          data={savedExperiences}
+          handler={handleEditingExperience}
+          reference={expContainerRef}
+        />
       </div>
 
       <button
@@ -248,12 +324,13 @@ export default function ExperienceComponent() {
       >
         + New Experience
       </button>
+
       <div ref={expContainerRef} className="experience-container hidden">
         <div>
           <JobTitle />
           <Company />
+          <Location />
           <DateRange
-            parentRef={expContainerRef}
             dateStorage={expDateStorage}
             dateStorageSetter={setExpDateStorage}
             setBoolean={setPresentBoolean}
