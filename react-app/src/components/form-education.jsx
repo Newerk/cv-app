@@ -38,14 +38,24 @@ function Location() {
 }
 
 //Render the list of saved education objects, and display them in a compact form
-function SavedEducationList({ data, handler }) {
+function SavedEducationList({ data, handler, reference }) {
   return (
     <>
       {data.map((education) => (
         <div
           key={education.id}
           className="saved-education"
-          onClick={() => handler(education.id)}
+          onClick={() => {
+            handler(education.id);
+
+            //If selected div has a "present" end date, then make sure the end-year & end-month buttons are hidden
+            if (education.endDate.present === true) {
+              reference.current
+                .querySelector(".end-date-inputs")
+                .querySelector(".buttons-wrapper")
+                .classList.add("hidden");
+            }
+          }}
         >
           <p>
             <strong>{education.degree}</strong>, {education.school}
@@ -91,7 +101,15 @@ export default function EducationComponent() {
     document.getElementById("edu-location").value = "";
     eduContainerRef.current
       .querySelector(".begin-date-inputs")
+      .querySelector(".month-btn").textContent = "Month";
+
+    eduContainerRef.current
+      .querySelector(".begin-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
+
+    eduContainerRef.current
+      .querySelector(".end-date-inputs")
+      .querySelector(".month-btn").textContent = "Month";
 
     eduContainerRef.current
       .querySelector(".end-date-inputs")
@@ -222,6 +240,7 @@ export default function EducationComponent() {
         <SavedEducationList
           data={savedEducation}
           handler={handleEditingEducation}
+          reference={eduContainerRef}
         />
       </div>
       <button
