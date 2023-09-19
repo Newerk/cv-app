@@ -7,7 +7,7 @@ export let savedExperiencesData = [
     employer: "Some Tech Place",
     location: "Tampa",
     beginDate: { month: "June", year: "2020" },
-    endDate: { month: "Month", year: "Present", present: false },
+    endDate: { month: "Month", year: "Present", present: true },
     bulletPoints: [
       { id: 0, info: "I did this" },
       { id: 1, info: "I did that" },
