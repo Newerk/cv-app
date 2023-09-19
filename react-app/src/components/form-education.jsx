@@ -37,6 +37,7 @@ function Location() {
   );
 }
 
+//Render the list of saved education objects, and display them in a compact form
 function SavedEducationList({ data, handler }) {
   return (
     <>
@@ -85,7 +86,6 @@ export default function EducationComponent() {
   };
 
   function formReset() {
-    //clear text from inputs
     document.getElementById("school").value = "";
     document.getElementById("degree").value = "";
     document.getElementById("edu-location").value = "";
@@ -108,6 +108,7 @@ export default function EducationComponent() {
       .classList.remove("hidden");
   }
 
+  //Function will either add a completely new education object, or overwrite an object if it's targeted for editing
   const handleSaveEducation = () => {
     const selectedYear =
       eduContainerRef.current.querySelector("#present-cb").checked === true
@@ -121,6 +122,7 @@ export default function EducationComponent() {
         (edu) => edu.id === currentSelection.current_id
       );
 
+      //get the index of the matching selected education obj, and update the property values based on the information filled out in the form inputs
       let copy = [...savedEducation];
       copy[copy.indexOf(selectedEdu)] = {
         id: currentSelection.current_id,
