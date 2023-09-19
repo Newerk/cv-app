@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
 import { savedEducationData } from "../data/savedEducation";
 import DateRange from "./date-range";
@@ -134,8 +135,9 @@ export default function EducationComponent() {
           year: eduContainerRef.current
             .querySelector(".end-date-inputs")
             .querySelector(".year-btn").textContent,
-          present: eduContainerRef.current.querySelector("#present-cb").checked, //this is incorrect. doesnt update if the box is checked or unchecked
-        },
+          present: 
+              eduContainerRef.current.querySelector("#present-cb").checked
+        }
       };
 
       setSavedEducation([...copy]);
@@ -196,7 +198,7 @@ export default function EducationComponent() {
       .querySelector(".year-btn").textContent = currentEdu.beginDate.year;
     eduContainerRef.current
       .querySelector(".end-date-inputs")
-      .querySelector(".month-btn").textContent = currentEdu.endDate.year;
+      .querySelector(".month-btn").textContent = currentEdu.endDate.month;
     eduContainerRef.current
       .querySelector(".end-date-inputs")
       .querySelector(".year-btn").textContent = currentEdu.endDate.year;
