@@ -96,9 +96,18 @@ export default function ExperienceComponent() {
     //clear text from inputs
     document.getElementById("position").value = "";
     document.getElementById("company").value = "";
+
+    expContainerRef.current
+      .querySelector(".begin-date-inputs")
+      .querySelector(".month-btn").textContent = "Month";
+
     expContainerRef.current
       .querySelector(".begin-date-inputs")
       .querySelector(".year-btn").textContent = "Year";
+
+    expContainerRef.current
+      .querySelector(".end-date-inputs")
+      .querySelector(".month-btn").textContent = "Month";
 
     expContainerRef.current
       .querySelector(".end-date-inputs")
