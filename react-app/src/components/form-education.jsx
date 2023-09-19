@@ -36,6 +36,27 @@ function Location() {
   );
 }
 
+function SavedEducationList({ data, handler }) {
+  return (
+    <>
+      {data.map((education) => (
+        <div
+          key={education.id}
+          className="saved-education"
+          onClick={() => handler(education.id)}
+        >
+          <p>
+            <strong>{education.degree}</strong>, {education.school}
+          </p>
+          <p>
+            {education.location} | {education.endDate.year}
+          </p>
+        </div>
+      ))}
+    </>
+  );
+}
+
 export default function EducationComponent() {
   const [savedEducation, setSavedEducation] = useState(savedEducationData);
   const [presentBoolean, setPresentBoolean] = useState(false);
@@ -55,27 +76,6 @@ export default function EducationComponent() {
   const savedEduRef = useRef(null);
   const eduContainerRef = useRef(null);
   const addEduBtnRef = useRef(null);
-
-  function SavedEducationList() {
-    return (
-      <>
-        {savedEducation.map((education) => (
-          <div
-            key={education.id}
-            className="saved-education"
-            onClick={() => handleEditingEducation(education.id)}
-          >
-            <p>
-              <strong>{education.degree}</strong>, {education.school}
-            </p>
-            <p>
-              {education.location} | {education.endDate.year}
-            </p>
-          </div>
-        ))}
-      </>
-    );
-  }
 
   const toggleFormVisiblity = () => {
     savedEduRef.current.classList.toggle("hidden");
@@ -134,7 +134,7 @@ export default function EducationComponent() {
           year: eduContainerRef.current
             .querySelector(".end-date-inputs")
             .querySelector(".year-btn").textContent,
-          present: eduContainerRef.current.querySelector("#present-cb").checked,
+          present: eduContainerRef.current.querySelector("#present-cb").checked, //this is incorrect. doesnt update if the box is checked or unchecked
         },
       };
 
@@ -211,7 +211,10 @@ export default function EducationComponent() {
         Education <span>*optional*</span>
       </h1>
       <div ref={savedEduRef}>
-        <SavedEducationList />
+        <SavedEducationList
+          data={savedEducation}
+          handler={handleEditingEducation}
+        />
       </div>
       <button
         ref={addEduBtnRef}
