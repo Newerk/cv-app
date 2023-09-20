@@ -182,27 +182,71 @@ export default function ExperienceComponent() {
   };
 
   const handleSaveExperience = () => {
-    setSavedExperiences([
-      ...savedExperiences,
-      {
-        id: uuidv4(),
-        position: document.getElementById("position").value,
-        employer: document.getElementById("employer").value,
+    const selectedYear =
+      expContainerRef.current.querySelector("#present-cb").checked === true
+        ? expDateStorage.endYear
+        : expContainerRef.current
+            .querySelector(".end-date-inputs")
+            .querySelector(".year-btn").textContent;
+
+    if (currentSelection.is_editing === true) {
+      const selectedExp = savedExperiences.find(
+        (exp) => exp.id === currentSelection.current_id
+      );
+      //get the index of the matching selected experience obj, and update the property values based on the information filled out in the form inputs
+      let copy = [...savedExperiences];
+      copy[copy.indexOf(selectedExp)] = {
+        id: currentSelection.current_id,
+        position: expContainerRef.current.querySelector("#position").value,
+        employer: expContainerRef.current.querySelector("#employer").value,
+        location: expContainerRef.current.querySelector("#exp-location").value,
+        bulletPoints: [...bulletpoint],
         beginDate: {
-          month: expDateStorage.beginMonth,
-          year: expDateStorage.beginYear,
+          month: expContainerRef.current
+            .querySelector(".begin-date-inputs")
+            .querySelector(".month-btn").textContent,
+          year: expContainerRef.current
+            .querySelector(".begin-date-inputs")
+            .querySelector(".year-btn").textContent,
         },
         endDate: {
-          month: expDateStorage.endMonth,
-          year: expDateStorage.endYear,
-          present: presentBoolean,
+          month: expContainerRef.current
+            .querySelector(".end-date-inputs")
+            .querySelector(".month-btn").textContent,
+          year: selectedYear,
+          present: expContainerRef.current.querySelector("#present-cb").checked,
         },
-        bulletPoints: [...bulletpoint], //need to take bulletpoints and copy it here
-      },
-    ]);
+      };
+
+      setSavedExperiences([...copy]);
+    } else {
+      setSavedExperiences([
+        ...savedExperiences,
+        {
+          id: uuidv4(),
+          position: document.getElementById("position").value,
+          employer: document.getElementById("employer").value,
+          beginDate: {
+            month: expDateStorage.beginMonth,
+            year: expDateStorage.beginYear,
+          },
+          endDate: {
+            month: expDateStorage.endMonth,
+            year: expDateStorage.endYear,
+            present: presentBoolean,
+          },
+          bulletPoints: [...bulletpoint], //need to take bulletpoints and copy it here
+        },
+      ]);
+    }
 
     console.log(savedExperiences);
     formReset();
+    setCurrentSelection({
+      ...currentSelection,
+      current_id: "",
+      is_editing: false,
+    });
   };
 
   function handleEditingExperience(id) {
