@@ -56,6 +56,9 @@ function SaveAndCancelBtns() {
           e.target.previousElementSibling.previousElementSibling.classList.toggle(
             "hidden"
           );
+
+          e.target.parentElement.firstChild.classList.toggle("editing-bullet");
+          e.target.parentElement.firstChild.contentEditable = false;
         }}
       >
         Save
@@ -78,6 +81,9 @@ function SaveAndCancelBtns() {
           e.target.previousElementSibling.previousElementSibling.previousElementSibling.classList.toggle(
             "hidden"
           );
+
+          e.target.parentElement.firstChild.classList.toggle("editing-bullet");
+          e.target.parentElement.firstChild.contentEditable = false;
         }}
       >
         Cancel
@@ -149,6 +155,13 @@ function Bulletpoints({ data, setter }) {
                   e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle(
                     "hidden"
                   );
+
+                  e.target.parentElement.firstChild.classList.toggle(
+                    "editing-bullet"
+                  );
+                  e.target.parentElement.firstChild.contentEditable = true;
+
+                  // e.target.parentElement.firstChild.onFocus = true;
                 }}
               >
                 Edit

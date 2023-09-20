@@ -112,6 +112,13 @@ button:focus-visible {
   width: 0;
 }
 
+.editing-bullet {
+  width: 100%;
+  height: fit-content;
+  background-color: #3b3b3b;
+  border: 1px solid #858585;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
