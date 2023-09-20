@@ -117,6 +117,59 @@ function SavedExperiences({ data, handler, reference }) {
   );
 }
 
+function Bulletpoints({ data, setter }) {
+  const handleAddingBullet = () => {
+    let textAreaValue = document.getElementById("new-bullet").value;
+    setter([...data, { id: uuidv4(), info: textAreaValue }]);
+    document.getElementById("new-bullet").value = "";
+  };
+
+  return (
+    <div className="bullets-wrapper">
+      {
+        <ul>
+          {data.map((point) => (
+            <li key={point.id}>
+              <p>{point.info}</p>
+              <button
+                className="edit-btn"
+                onClick={(e) => {
+                  //edit btn
+                  e.target.classList.toggle("hidden");
+
+                  //delete btn
+                  e.target.nextElementSibling.classList.toggle("hidden");
+
+                  //save btn
+                  e.target.nextElementSibling.nextElementSibling.classList.toggle(
+                    "hidden"
+                  );
+
+                  //cancel btn
+                  e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle(
+                    "hidden"
+                  );
+                }}
+              >
+                Edit
+              </button>
+              <button
+                className="delete-btn"
+                onClick={() => setter(data.filter((li) => li.id !== point.id))}
+              >
+                Delete
+              </button>
+              <SaveAndCancelBtns />
+            </li>
+          ))}
+        </ul>
+      }
+      <textarea name="new-bullet" id="new-bullet"></textarea>
+      <button onClick={handleAddingBullet}>Add Bulletpoint</button>
+    </div>
+  );
+}
+
 export default function ExperienceComponent() {
   const [savedExperiences, setSavedExperiences] =
     useState(savedExperiencesData);
@@ -289,63 +342,6 @@ export default function ExperienceComponent() {
     setBulletPoint([...currentExp.bulletPoints]);
   }
 
-  function Bulletpoints() {
-    const handleAddingBullet = () => {
-      let textAreaValue = document.getElementById("new-bullet").value;
-      setBulletPoint([...bulletpoint, { id: uuidv4(), info: textAreaValue }]);
-      document.getElementById("new-bullet").value = "";
-    };
-
-    return (
-      <div className="bullets-wrapper">
-        {
-          <ul>
-            {bulletpoint.map((point) => (
-              <li key={point.id}>
-                <p>{point.info}</p>
-                <button
-                  className="edit-btn"
-                  onClick={(e) => {
-                    //edit btn
-                    e.target.classList.toggle("hidden");
-
-                    //delete btn
-                    e.target.nextElementSibling.classList.toggle("hidden");
-
-                    //save btn
-                    e.target.nextElementSibling.nextElementSibling.classList.toggle(
-                      "hidden"
-                    );
-
-                    //cancel btn
-                    e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle(
-                      "hidden"
-                    );
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="delete-btn"
-                  onClick={() =>
-                    setBulletPoint(
-                      bulletpoint.filter((li) => li.id !== point.id)
-                    )
-                  }
-                >
-                  Delete
-                </button>
-                <SaveAndCancelBtns />
-              </li>
-            ))}
-          </ul>
-        }
-        <textarea name="new-bullet" id="new-bullet"></textarea>
-        <button onClick={handleAddingBullet}>Add Bulletpoint</button>
-      </div>
-    );
-  }
-
   return (
     <div className="experience-section">
       <h1>Experience</h1>
@@ -379,7 +375,7 @@ export default function ExperienceComponent() {
             dateStorageSetter={setExpDateStorage}
             setBoolean={setPresentBoolean}
           />
-          <Bulletpoints />
+          <Bulletpoints data={bulletpoint} setter={setBulletPoint} />
         </div>
         <button
           className="experience cancel-btn"
