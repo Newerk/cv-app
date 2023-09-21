@@ -37,7 +37,9 @@ function Location() {
   );
 }
 
-function SaveAndCancelBtns() {
+function SaveAndCancelBtns({ bullet }) {
+  let originalBulletInfo = bullet.info;
+
   return (
     <>
       <button
@@ -59,6 +61,8 @@ function SaveAndCancelBtns() {
 
           e.target.parentElement.firstChild.classList.toggle("editing-bullet");
           e.target.parentElement.firstChild.contentEditable = false;
+          originalBulletInfo = bullet.info =
+            e.target.parentElement.firstChild.textContent;
         }}
       >
         Save
@@ -84,6 +88,7 @@ function SaveAndCancelBtns() {
 
           e.target.parentElement.firstChild.classList.toggle("editing-bullet");
           e.target.parentElement.firstChild.contentEditable = false;
+          e.target.parentElement.firstChild.textContent = originalBulletInfo;
         }}
       >
         Cancel
@@ -172,7 +177,7 @@ function Bulletpoints({ data, setter }) {
               >
                 Delete
               </button>
-              <SaveAndCancelBtns />
+              <SaveAndCancelBtns bullet={point} />
             </li>
           ))}
         </ul>
