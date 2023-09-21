@@ -61,7 +61,8 @@ function SavedEducationList({ data, handler, reference }) {
             <strong>{education.degree}</strong>, {education.school}
           </p>
           <p>
-            {education.location} | {education.endDate.year}
+            {education.location} |{" "}
+            {education.endDate.year === "Year" ? "" : education.endDate.year}
           </p>
         </div>
       ))}

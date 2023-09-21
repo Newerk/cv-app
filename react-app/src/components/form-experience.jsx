@@ -115,7 +115,8 @@ function SavedExperiences({ data, handler, reference }) {
             <strong>{experience.position}</strong>, {experience.employer}
           </p>
           <p>
-            {experience.beginDate.year}-{experience.endDate.year}
+            {experience.beginDate.year}-
+            {experience.endDate.year === "Year" ? "" : experience.endDate.year}
           </p>
         </div>
       ))}

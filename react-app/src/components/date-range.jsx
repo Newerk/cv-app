@@ -146,11 +146,10 @@ export default function DateRange({
       <div className="end-date-inputs" ref={endInputsRef}>
         End Date
         <div className="buttons-wrapper">
-        {dateStorage.present === true &&
-          endInputsRef.current
-            .querySelector(".buttons-wrapper")
-            .classList.add("hidden")
-            }
+          {dateStorage.present === true &&
+            endInputsRef.current
+              .querySelector(".buttons-wrapper")
+              .classList.add("hidden")}
 
           <button
             className="month-btn"
@@ -201,6 +200,8 @@ export default function DateRange({
                 dateStorageSetter({ ...dateStorage, endYear: "Present" });
               } else {
                 setBoolean(false);
+                endInputsRef.current.querySelector(".year-btn").textContent =
+                  "Year";
                 dateStorageSetter({ ...dateStorage, endYear: "" });
               }
 
