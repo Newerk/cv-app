@@ -131,7 +131,7 @@ export default function EducationComponent() {
   const handleSaveEducation = () => {
     const selectedYear =
       eduContainerRef.current.querySelector("#present-cb").checked === true
-        ? educateStorage.endYear
+        ? "Present"
         : eduContainerRef.current
             .querySelector(".end-date-inputs")
             .querySelector(".year-btn").textContent;

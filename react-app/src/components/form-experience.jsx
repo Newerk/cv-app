@@ -159,9 +159,8 @@ function Bulletpoints({ data, setter }) {
                   e.target.parentElement.firstChild.classList.toggle(
                     "editing-bullet"
                   );
-                  e.target.parentElement.firstChild.contentEditable = true;
 
-                  // e.target.parentElement.firstChild.onFocus = true;
+                  e.target.parentElement.firstChild.contentEditable = true;
                 }}
               >
                 Edit
@@ -250,7 +249,7 @@ export default function ExperienceComponent() {
   const handleSaveExperience = () => {
     const selectedYear =
       expContainerRef.current.querySelector("#present-cb").checked === true
-        ? expDateStorage.endYear
+        ? "Present"
         : expContainerRef.current
             .querySelector(".end-date-inputs")
             .querySelector(".year-btn").textContent;
