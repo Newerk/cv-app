@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 export default function SkillsComponent() {
-  const [savedSkills, setSavedSkills] = useState("");
+  const [savedSkills, setSavedSkills] = useState([]);
   const skillsRef = useRef(null);
   const skillsContainerRef = useRef(null);
   const addSkillBtnRef = useRef(null);
@@ -9,7 +9,7 @@ export default function SkillsComponent() {
   return (
     <div className="skills-section">
       <h1>Skills</h1>
-      <p>{savedSkills}</p>
+      <p>{savedSkills.join(", ")}</p>
       <button
         ref={addSkillBtnRef}
         onClick={(e) => {
@@ -34,7 +34,7 @@ export default function SkillsComponent() {
         <button
           className="skills cancel-btn"
           onClick={() => {
-            skillsRef.current.value = savedSkills;
+            skillsRef.current.value = savedSkills.join(", ");
             skillsContainerRef.current.classList.toggle("hidden");
             addSkillBtnRef.current.classList.toggle("hidden");
           }}
@@ -47,6 +47,13 @@ export default function SkillsComponent() {
             setSavedSkills(skillsRef.current.value);
             skillsContainerRef.current.classList.toggle("hidden");
             addSkillBtnRef.current.classList.toggle("hidden");
+
+            let skillsArray = [];
+            skillsRef.current.value
+              .split(",")
+              .forEach((skill) => skillsArray.push(skill.trim()));
+
+            setSavedSkills([...skillsArray]);
           }}
         >
           Save
