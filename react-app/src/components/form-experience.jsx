@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
+import { useRef /*, useState */ } from "react";
 import DateRange from "./date-range";
 import { v4 as uuidv4 } from "uuid";
-import { savedExperiencesData } from "../data/savedExperiences";
+// import { savedExperiencesData } from "../data/savedExperiences";
 
 function Company() {
   return (
@@ -190,23 +190,34 @@ function Bulletpoints({ data, setter }) {
   );
 }
 
-export default function ExperienceComponent() {
-  const [savedExperiences, setSavedExperiences] =
-    useState(savedExperiencesData);
-  const [presentBoolean, setPresentBoolean] = useState(false);
-  const [bulletpoint, setBulletPoint] = useState([]);
-  const [currentSelection, setCurrentSelection] = useState({
-    current_id: "",
-    is_editing: false,
-  });
+export default function ExperienceComponent({
+  savedExperiences,
+  setSavedExperiences,
+  presentBoolean,
+  setPresentBoolean,
+  bulletpoint,
+  setBulletPoint,
+  currentSelection,
+  setCurrentSelection,
+  expDateStorage,
+  setExpDateStorage,
+}) {
+  // const [savedExperiences, setSavedExperiences] =
+  //   useState(savedExperiencesData);
+  // const [presentBoolean, setPresentBoolean] = useState(false);
+  // const [bulletpoint, setBulletPoint] = useState([]);
+  // const [currentSelection, setCurrentSelection] = useState({
+  //   current_id: "",
+  //   is_editing: false,
+  // });
 
-  const [expDateStorage, setExpDateStorage] = useState({
-    beginMonth: "Month",
-    beginYear: "Year",
-    endMonth: "Month",
-    endYear: "Year",
-    present: presentBoolean,
-  });
+  // const [expDateStorage, setExpDateStorage] = useState({
+  //   beginMonth: "Month",
+  //   beginYear: "Year",
+  //   endMonth: "Month",
+  //   endYear: "Year",
+  //   present: presentBoolean,
+  // });
 
   const expContainerRef = useRef(null);
   const addExpBtnRef = useRef(null);

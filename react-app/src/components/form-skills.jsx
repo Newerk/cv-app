@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useRef /*, useState*/ } from "react";
 
-export default function SkillsComponent() {
-  const [savedSkills, setSavedSkills] = useState([]);
+export default function SkillsComponent({ savedSkills, setSavedSkills }) {
+  // const [savedSkills, setSavedSkills] = useState([]);
   const skillsRef = useRef(null);
   const skillsContainerRef = useRef(null);
   const addSkillBtnRef = useRef(null);

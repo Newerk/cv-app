@@ -1,35 +1,106 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./index.css";
+import HeaderComponent from "./components/form-header.jsx";
+import EducationComponent from "./components/form-education.jsx";
+import ExperienceComponent from "./components/form-experience";
+import CVPreview from "./components/cv-preview";
+import SkillsComponent from "./components/form-skills";
+import { savedExperiencesData } from "./data/savedExperiences";
+import { savedEducationData } from "./data/savedEducation";
 
 function App() {
-  const [count, setCount] = useState(0)
+  //general info component states
+  const [inputValues, setInputValues] = useState({
+    name: "",
+    email: "",
+    phoneNum: 0,
+  });
+
+  //education component states
+  const [savedEducation, setSavedEducation] = useState(savedEducationData);
+  const [eduPresentBoolean, setEduPresentBoolean] = useState(false);
+  const [eduCurrentSelection, setEduCurrentSelection] = useState({
+    current_id: "",
+    is_editing: false,
+  });
+
+  const [educateStorage, setEducateStorage] = useState({
+    beginMonth: "Month",
+    beginYear: "Year",
+    endMonth: "Month",
+    endYear: "Year",
+    present: eduPresentBoolean,
+  });
+
+  //experience component states
+  const [savedExperiences, setSavedExperiences] =
+    useState(savedExperiencesData);
+  const [expPresentBoolean, setExpPresentBoolean] = useState(false);
+  const [bulletpoint, setBulletPoint] = useState([]);
+  const [expCurrentSelection, setExpCurrentSelection] = useState({
+    current_id: "",
+    is_editing: false,
+  });
+
+  const [expDateStorage, setExpDateStorage] = useState({
+    beginMonth: "Month",
+    beginYear: "Year",
+    endMonth: "Month",
+    endYear: "Year",
+    present: expPresentBoolean,
+  });
+
+  //skills component states
+  const [savedSkills, setSavedSkills] = useState([]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="content">
+        <div className="form-container">
+          <HeaderComponent
+            inputValues={inputValues}
+            setInputValues={setInputValues}
+          />
+          <EducationComponent
+            savedEducation={savedEducation}
+            setSavedEducation={setSavedEducation}
+            presentBoolean={eduPresentBoolean}
+            setPresentBoolean={setEduPresentBoolean}
+            currentSelection={eduCurrentSelection}
+            setCurrentSelection={setEduCurrentSelection}
+            educateStorage={educateStorage}
+            setEducateStorage={setEducateStorage}
+          />
+          <ExperienceComponent
+            savedExperiences={savedExperiences}
+            setSavedExperiences={setSavedExperiences}
+            presentBoolean={expPresentBoolean}
+            setPresentBoolean={setExpPresentBoolean}
+            bulletpoint={bulletpoint}
+            setBulletPoint={setBulletPoint}
+            currentSelection={expCurrentSelection}
+            setCurrentSelection={setExpCurrentSelection}
+            expDateStorage={expDateStorage}
+            setExpDateStorage={setExpDateStorage}
+          />
+          <SkillsComponent
+            savedSkills={savedSkills}
+            setSavedSkills={setSavedSkills}
+          />
+        </div>
+        <div className="cv-container">
+          <div id="cv-previewer">
+            <CVPreview
+            // generalData={}
+            // eduData={}
+            // expData={}
+            // skillsData={}
+            />
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -31,21 +31,6 @@ body {
   overflow-y: hidden;
 }
 
-.cv-container {
-  display: flex;
-  justify-content: center;
-  background-color: #747bff;
-  padding: 1rem 0;
-  overflow-y: auto;
-}
-
-#cv-previewer {
-  padding: 3rem;
-  width: 200mm;
-  height: 287mm;
-  color: black;
-  background-color: #f9f9f9;
-}
 
 .date {
   width: 3rem;

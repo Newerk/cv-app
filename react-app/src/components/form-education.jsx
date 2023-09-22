@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
-import { savedEducationData } from "../data/savedEducation";
+import { useRef /*, useState*/ } from "react";
+// import { savedEducationData } from "../data/savedEducation";
 import DateRange from "./date-range";
 import { v4 as uuidv4 } from "uuid";
 
@@ -70,21 +70,30 @@ function SavedEducationList({ data, handler, reference }) {
   );
 }
 
-export default function EducationComponent() {
-  const [savedEducation, setSavedEducation] = useState(savedEducationData);
-  const [presentBoolean, setPresentBoolean] = useState(false);
-  const [currentSelection, setCurrentSelection] = useState({
-    current_id: "",
-    is_editing: false,
-  });
+export default function EducationComponent({
+  savedEducation,
+  setSavedEducation,
+  presentBoolean,
+  setPresentBoolean,
+  currentSelection,
+  setCurrentSelection,
+  educateStorage,
+  setEducateStorage,
+}) {
+  // const [savedEducation, setSavedEducation] = useState(savedEducationData);
+  // const [presentBoolean, setPresentBoolean] = useState(false);
+  // const [currentSelection, setCurrentSelection] = useState({
+  //   current_id: "",
+  //   is_editing: false,
+  // });
 
-  const [educateStorage, setEducateStorage] = useState({
-    beginMonth: "Month",
-    beginYear: "Year",
-    endMonth: "Month",
-    endYear: "Year",
-    present: presentBoolean,
-  });
+  // const [educateStorage, setEducateStorage] = useState({
+  //   beginMonth: "Month",
+  //   beginYear: "Year",
+  //   endMonth: "Month",
+  //   endYear: "Year",
+  //   present: presentBoolean,
+  // });
 
   const savedEduRef = useRef(null);
   const eduContainerRef = useRef(null);
@@ -189,8 +198,6 @@ export default function EducationComponent() {
       ]);
     }
 
-    console.log(savedEducation);
-
     formReset();
     setCurrentSelection({
       ...currentSelection,
@@ -265,7 +272,6 @@ export default function EducationComponent() {
             setBoolean={setPresentBoolean}
           />
         </div>
-        {console.log(savedEducation)}
         <button
           className="education cancel-btn"
           onClick={() => {
