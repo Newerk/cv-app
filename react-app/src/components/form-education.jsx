@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 function Degree() {
   return (
     <>
-      Degree *optional*
+      Degree
       <label htmlFor="degree">
         <input type="text" name="degree" id="degree" />
       </label>
@@ -18,7 +18,7 @@ function Degree() {
 function School() {
   return (
     <>
-      School / University *optional*
+      School / University
       <label htmlFor="school">
         <input type="text" name="school" id="school" />
       </label>
@@ -235,9 +235,7 @@ export default function EducationComponent() {
 
   return (
     <div className="education-section">
-      <h1>
-        Education <span>*optional*</span>
-      </h1>
+      <h1>Education</h1>
       <div ref={savedEduRef}>
         <SavedEducationList
           data={savedEducation}

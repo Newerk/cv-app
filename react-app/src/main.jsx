@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <SkillsComponent />
       </div>
       <div className="cv-container">
-        <div id="cv-previewer">
+        <div id="cv-previewer" className="page">
           <CVPreview />
         </div>
       </div>

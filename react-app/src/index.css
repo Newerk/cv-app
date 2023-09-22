@@ -32,14 +32,19 @@ body {
 }
 
 .cv-container {
-  height: 100vh;
-  width: 100%;
+  display: flex;
+  justify-content: center;
   background-color: #747bff;
+  padding: 1rem 0;
+  overflow-y: auto;
 }
 
 #cv-previewer {
-  height: 100vh;
-  width: 100%;
+  padding: 3rem;
+  width: 200mm;
+  height: 287mm;
+  color: black;
+  background-color: #f9f9f9;
 }
 
 .date {
