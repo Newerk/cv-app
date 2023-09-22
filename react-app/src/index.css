@@ -31,7 +31,9 @@ body {
   overflow-y: hidden;
 }
 
-
+ul {
+  padding-left: 1rem;
+}
 .date {
   width: 3rem;
 }

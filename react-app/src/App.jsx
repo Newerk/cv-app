@@ -93,7 +93,7 @@ function App() {
             <CVPreview
               generalData={inputValues}
               eduData={savedEducation}
-              // expData={}
+              expData={savedExperiences}
               // skillsData={}
             />
           </div>
