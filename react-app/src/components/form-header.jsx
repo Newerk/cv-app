@@ -9,7 +9,6 @@ function FullName({ handleChange }) {
         type="text"
         name="full name"
         id="fullname"
-        placeholder={name}
         onChange={handleChange}
       />
     </label>

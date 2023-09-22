@@ -16,4 +16,55 @@
 
 .cv-general > h1 {
   font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.cv-general > div {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.seperator {
+  height: 2px;
+  width: 100%;
+  background-color: black;
+}
+
+.edu-section {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: repeat(2, auto);
+
+  width: 100%;
+  height: 3rem; /*temp, this will be removed*/
+  background-color: yellow;
+  border: 1px solid red;
+  margin-bottom: 1rem;
+}
+
+.cv-school {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: green;
+}
+
+.cv-date {
+  grid-column: 3;
+  grid-row: 1;
+  background-color: dodgerblue;
+}
+
+.cv-degree {
+  grid-column: 1;
+  grid-row: 2;
+  background-color: orange;
+}
+
+.cv-location {
+  grid-column: 3;
+  grid-row: 2;
+  background-color: thistle;
+  text-align: end;
 }

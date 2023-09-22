@@ -11,9 +11,9 @@ import { savedEducationData } from "./data/savedEducation";
 function App() {
   //general info component states
   const [inputValues, setInputValues] = useState({
-    name: "",
-    email: "",
-    phoneNum: 0,
+    name: "Your Name",
+    email: "email@example.com",
+    phoneNum: "123-456-7890",
   });
 
   //education component states
@@ -91,10 +91,10 @@ function App() {
         <div className="cv-container">
           <div id="cv-previewer">
             <CVPreview
-            // generalData={}
-            // eduData={}
-            // expData={}
-            // skillsData={}
+              generalData={inputValues}
+              eduData={savedEducation}
+              // expData={}
+              // skillsData={}
             />
           </div>
         </div>
