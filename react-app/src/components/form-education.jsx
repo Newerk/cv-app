@@ -79,10 +79,10 @@ export default function EducationComponent() {
   });
 
   const [educateStorage, setEducateStorage] = useState({
-    beginMonth: "",
-    beginYear: "",
-    endMonth: "",
-    endYear: "",
+    beginMonth: "Month",
+    beginYear: "Year",
+    endMonth: "Month",
+    endYear: "Year",
     present: presentBoolean,
   });
 

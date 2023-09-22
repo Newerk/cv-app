@@ -120,8 +120,10 @@ function SavedExperiences({ data, handler, reference }) {
             <strong>{experience.position}</strong>, {experience.employer}
           </p>
           <p>
-            {experience.beginDate.year}-
-            {experience.endDate.year === "Year" ? "" : experience.endDate.year}
+            {experience.beginDate.year === "Year"
+              ? ""
+              : experience.beginDate.year}
+            -{experience.endDate.year === "Year" ? "" : experience.endDate.year}
           </p>
         </div>
       ))}
@@ -199,10 +201,10 @@ export default function ExperienceComponent() {
   });
 
   const [expDateStorage, setExpDateStorage] = useState({
-    beginMonth: "",
-    beginYear: "",
-    endMonth: "",
-    endYear: "",
+    beginMonth: "Month",
+    beginYear: "Year",
+    endMonth: "Month",
+    endYear: "Year",
     present: presentBoolean,
   });
 
