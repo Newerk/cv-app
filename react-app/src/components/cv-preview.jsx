@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import "../cv.css";
+import { monthsList } from "../data/monthsArray";
 
 export default function CVPreview({
   generalData,
@@ -7,6 +8,16 @@ export default function CVPreview({
   expData,
   skillsData,
 }) {
+  const monthConversion = (month, list) => {
+    return month === "Month"
+      ? ""
+      : list.find((obj) => obj.month === month).numerical;
+  };
+
+  const yearConversion = (year) => {
+    return year === "Year" ? "" : year;
+  };
+
   return (
     <>
       <div className="cv-general">
@@ -23,8 +34,13 @@ export default function CVPreview({
           <div key={section.id} className="edu-section">
             <div className="cv-school">{section.school}</div>
             <div className="cv-date">
-              {section.beginDate.month + " " + section.beginDate.year}-
-              {section.endDate.month + " " + section.endDate.year}
+              {monthConversion(section.beginDate.month, monthsList) +
+                "/" +
+                yearConversion(section.beginDate.year)}
+              {" - "}
+              {monthConversion(section.endDate.month, monthsList) +
+                "/" +
+                yearConversion(section.endDate.year)}
             </div>
             <div className="cv-degree">{section.degree}</div>
             <div className="cv-location">{section.location}</div>
@@ -38,8 +54,13 @@ export default function CVPreview({
           <div key={section.id} className="exp-section">
             <div className="cv-position">{section.position}</div>
             <div className="cv-date">
-              {section.beginDate.month + " " + section.beginDate.year}-
-              {section.endDate.month + " " + section.endDate.year}
+              {monthConversion(section.beginDate.month, monthsList) +
+                "/" +
+                yearConversion(section.beginDate.year)}
+              {" - "}
+              {monthConversion(section.endDate.month, monthsList) +
+                "/" +
+                yearConversion(section.endDate.year)}
             </div>
             <div className="cv-employer">{section.employer}</div>
             <div className="cv-location">{section.location}</div>
