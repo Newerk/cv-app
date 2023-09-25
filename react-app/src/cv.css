@@ -22,7 +22,8 @@
 
 .cv-general > div {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -57,7 +58,6 @@
   grid-column: 1;
   grid-row: 1;
   font-weight: bold;
-
 }
 
 .cv-location {
@@ -90,4 +90,18 @@
 .cv-bulletpoints {
   grid-row: 3;
   grid-column: 1 / 4;
+}
+
+.cv-email::before,
+.cv-number::before {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: -13%;
+}
+
+.cv-email::before {
+  content: url(./assets/email.svg);
+}
+.cv-number::before {
+  content: url(./assets/phone.svg);
 }

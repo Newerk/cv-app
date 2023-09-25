@@ -13,7 +13,7 @@ function App() {
   const [inputValues, setInputValues] = useState({
     name: "Your Name",
     email: "email@example.com",
-    phoneNum: "123-456-7890",
+    phoneNum: "1234567890",
   });
 
   //education component states

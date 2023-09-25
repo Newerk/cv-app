@@ -202,23 +202,6 @@ export default function ExperienceComponent({
   expDateStorage,
   setExpDateStorage,
 }) {
-  // const [savedExperiences, setSavedExperiences] =
-  //   useState(savedExperiencesData);
-  // const [presentBoolean, setPresentBoolean] = useState(false);
-  // const [bulletpoint, setBulletPoint] = useState([]);
-  // const [currentSelection, setCurrentSelection] = useState({
-  //   current_id: "",
-  //   is_editing: false,
-  // });
-
-  // const [expDateStorage, setExpDateStorage] = useState({
-  //   beginMonth: "Month",
-  //   beginYear: "Year",
-  //   endMonth: "Month",
-  //   endYear: "Year",
-  //   present: presentBoolean,
-  // });
-
   const expContainerRef = useRef(null);
   const addExpBtnRef = useRef(null);
   const savedExpRef = useRef(null);

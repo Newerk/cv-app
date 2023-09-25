@@ -80,21 +80,6 @@ export default function EducationComponent({
   educateStorage,
   setEducateStorage,
 }) {
-  // const [savedEducation, setSavedEducation] = useState(savedEducationData);
-  // const [presentBoolean, setPresentBoolean] = useState(false);
-  // const [currentSelection, setCurrentSelection] = useState({
-  //   current_id: "",
-  //   is_editing: false,
-  // });
-
-  // const [educateStorage, setEducateStorage] = useState({
-  //   beginMonth: "Month",
-  //   beginYear: "Year",
-  //   endMonth: "Month",
-  //   endYear: "Year",
-  //   present: presentBoolean,
-  // });
-
   const savedEduRef = useRef(null);
   const eduContainerRef = useRef(null);
   const addEduBtnRef = useRef(null);

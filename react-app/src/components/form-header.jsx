@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-// import { useState } from "react";
-
 function FullName({ handleChange }) {
   return (
     <label htmlFor="fullname">
@@ -39,12 +37,6 @@ function PhoneNumber({ handleChange }) {
 }
 
 export default function HeaderComponent({ inputValues, setInputValues }) {
-  // const [inputValues, setInputValues] = useState({
-  //   name: "",
-  //   email: "",
-  //   phoneNum: 0,
-  // });
-
   const handleNameChange = (e) => {
     setInputValues({ ...inputValues, name: e.target.value });
     document.querySelector(".cv-general").querySelector("h1").textContent =
