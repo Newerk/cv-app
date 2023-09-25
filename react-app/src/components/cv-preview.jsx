@@ -8,14 +8,20 @@ export default function CVPreview({
   expData,
   skillsData,
 }) {
-  const monthConversion = (month, list) => {
+  const monthConversion = (month, list, year) => {
     return month === "Month"
+      ? ""
+      : year === "Present"
       ? ""
       : list.find((obj) => obj.month === month).numerical;
   };
 
   const yearConversion = (year) => {
-    return year === "Year" ? "" : year;
+    return year === "Year"
+      ? "/Enter Year"
+      : year === "Present"
+      ? year
+      : "/" + year;
   };
 
   return (
@@ -34,13 +40,17 @@ export default function CVPreview({
           <div key={section.id} className="edu-section">
             <div className="cv-school">{section.school}</div>
             <div className="cv-date">
-              {monthConversion(section.beginDate.month, monthsList) +
-                "/" +
-                yearConversion(section.beginDate.year)}
+              {monthConversion(
+                section.beginDate.month,
+                monthsList,
+                section.beginDate.year
+              ) + yearConversion(section.beginDate.year)}
               {" - "}
-              {monthConversion(section.endDate.month, monthsList) +
-                "/" +
-                yearConversion(section.endDate.year)}
+              {monthConversion(
+                section.endDate.month,
+                monthsList,
+                section.endDate.year
+              ) + yearConversion(section.endDate.year)}
             </div>
             <div className="cv-degree">{section.degree}</div>
             <div className="cv-location">{section.location}</div>
@@ -54,13 +64,17 @@ export default function CVPreview({
           <div key={section.id} className="exp-section">
             <div className="cv-position">{section.position}</div>
             <div className="cv-date">
-              {monthConversion(section.beginDate.month, monthsList) +
-                "/" +
-                yearConversion(section.beginDate.year)}
+              {monthConversion(
+                section.beginDate.month,
+                monthsList,
+                section.beginDate.year
+              ) + yearConversion(section.beginDate.year)}
               {" - "}
-              {monthConversion(section.endDate.month, monthsList) +
-                "/" +
-                yearConversion(section.endDate.year)}
+              {monthConversion(
+                section.endDate.month,
+                monthsList,
+                section.endDate.year
+              ) + yearConversion(section.endDate.year)}
             </div>
             <div className="cv-employer">{section.employer}</div>
             <div className="cv-location">{section.location}</div>

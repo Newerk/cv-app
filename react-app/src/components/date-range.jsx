@@ -197,7 +197,10 @@ export default function DateRange({
 
               if (e.target.checked) {
                 setBoolean(true);
-                dateStorageSetter({ ...dateStorage, endYear: "Present" });
+                dateStorageSetter({
+                  ...dateStorage,
+                  endYear: "Present",
+                });
               } else {
                 setBoolean(false);
                 endInputsRef.current.querySelector(".year-btn").textContent =

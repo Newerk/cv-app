@@ -310,6 +310,7 @@ export default function ExperienceComponent({
           id: uuidv4(),
           position: document.getElementById("position").value,
           employer: document.getElementById("employer").value,
+          location: document.getElementById("exp-location").value,
           beginDate: {
             month: expDateStorage.beginMonth,
             year: expDateStorage.beginYear,
@@ -334,8 +335,6 @@ export default function ExperienceComponent({
   };
 
   function handleEditingExperience(id) {
-    formReset();
-
     setCurrentSelection({
       ...currentSelection,
       is_editing: true,
