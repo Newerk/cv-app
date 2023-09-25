@@ -9,8 +9,8 @@ export default function CVPreview({
   skillsData,
 }) {
   const monthConversion = (month, list, year) => {
-    return month === "Month"
-      ? ""
+    return month === "Month" && year !== "Present"
+      ? "Enter Month"
       : year === "Present"
       ? ""
       : list.find((obj) => obj.month === month).numerical;
