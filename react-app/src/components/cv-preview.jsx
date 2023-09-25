@@ -5,7 +5,7 @@ export default function CVPreview({
   generalData,
   eduData,
   expData,
-  // skillsData,
+  skillsData,
 }) {
   return (
     <>
@@ -54,8 +54,15 @@ export default function CVPreview({
       <div className="cv-skills">
         <h2>Skills</h2>
         <div className="seperator" />
-
-        {/* {skillsData} */}
+        <div className="skills-section">
+          {skillsData.map((skill) =>
+            skill !== skillsData[skillsData.length - 1] ? (
+              <span key={skill}>{skill}, </span>
+            ) : (
+              <span key={skill}>{skill}</span>
+            )
+          )}
+        </div>
       </div>
     </>
   );

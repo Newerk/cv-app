@@ -94,7 +94,7 @@ function App() {
               generalData={inputValues}
               eduData={savedEducation}
               expData={savedExperiences}
-              // skillsData={}
+              skillsData={savedSkills}
             />
           </div>
         </div>
