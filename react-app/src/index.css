@@ -16,7 +16,7 @@ body {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #747bff;
+  background-color: #C6C5B9;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -122,6 +122,10 @@ button:focus-visible {
 input {
   height: 1.5rem;
   margin-bottom: 0.5rem;
+  background-color: white;
+  border: 2px solid #858585;
+  border-radius: 5px;
+  color: black;
 }
 textarea {
   margin-bottom: 1rem;

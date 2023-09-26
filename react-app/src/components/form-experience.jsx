@@ -104,6 +104,7 @@ function SavedExperiences({ data, handler, reference }) {
         <div
           key={experience.id}
           className="saved-experience"
+          style={{ marginBottom: ".5rem" }}
           onClick={() => {
             handler(experience.id);
 
@@ -125,7 +126,11 @@ function SavedExperiences({ data, handler, reference }) {
               : experience.beginDate.year}
             -{experience.endDate.year === "Year" ? "" : experience.endDate.year}
           </p>
-          <img className="edit-symbol" src="../src/assets/pen.svg" />
+          <img
+            className="edit-symbol"
+            src="../src/assets/pen-round-stroke.svg"
+            style={{ opacity: 0 }}
+          />
         </div>
       ))}
     </div>

@@ -45,6 +45,7 @@ function SavedEducationList({ data, handler, reference }) {
         <div
           key={education.id}
           className="saved-education"
+          style={{ marginBottom: ".5rem" }}
           onClick={() => {
             handler(education.id);
 
@@ -64,7 +65,11 @@ function SavedEducationList({ data, handler, reference }) {
             {education.location} |{" "}
             {education.endDate.year === "Year" ? "" : education.endDate.year}
           </p>
-          <img className="edit-symbol" src="../src/assets/pen.svg" />
+          <img
+            className="edit-symbol"
+            src="../src/assets/pen-round-stroke.svg"
+            style={{ opacity: 1 }}
+          />
         </div>
       ))}
     </div>
