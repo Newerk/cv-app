@@ -51,7 +51,7 @@ export default function HeaderComponent({ inputValues, setInputValues }) {
 
   return (
     <>
-      <div className="header-component">
+      <div className="header-section">
         <h1>General Information</h1>
         <FullName handleChange={handleNameChange} />
         <Email handleChange={handleEmailChange} />

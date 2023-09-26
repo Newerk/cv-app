@@ -40,7 +40,7 @@ function Location() {
 //Render the list of saved education objects, and display them in a compact form
 function SavedEducationList({ data, handler, reference }) {
   return (
-    <>
+    <div className="education-wrapper">
       {data.map((education) => (
         <div
           key={education.id}
@@ -66,7 +66,7 @@ function SavedEducationList({ data, handler, reference }) {
           </p>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

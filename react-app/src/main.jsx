@@ -11,22 +11,5 @@ import App from "./App";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
-    {/* <div className="content">
-      <div className="form-container">
-        <HeaderComponent />
-        <EducationComponent />
-        <ExperienceComponent />
-        <SkillsComponent />
-      </div>
-      <div className="cv-container">
-        <div id="cv-previewer">
-          <CVPreview 
-          generalData={}
-          eduData={}
-          expData={}
-          skillsData={}/>
-        </div>
-      </div>
-    </div> */}
   </React.StrictMode>
 );

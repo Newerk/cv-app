@@ -1,6 +1,6 @@
 .date-range-component {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: repeat(3, auto);
   width: 100%;
 }
@@ -16,7 +16,7 @@
 .end-date-inputs {
   display: flex;
   flex-direction: column;
-  grid-column: 2;
+  grid-column: 3;
   grid-row: 1;
 }
 
@@ -35,7 +35,9 @@
 }
 
 .checkbox {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  padding-top: 0.5rem;
+  width: 8rem;
 }

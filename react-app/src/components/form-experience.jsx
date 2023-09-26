@@ -99,7 +99,7 @@ function SaveAndCancelBtns({ bullet }) {
 
 function SavedExperiences({ data, handler, reference }) {
   return (
-    <>
+    <div className="experience-wrapper">
       {data.map((experience) => (
         <div
           key={experience.id}
@@ -127,7 +127,7 @@ function SavedExperiences({ data, handler, reference }) {
           </p>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
@@ -185,7 +185,9 @@ function Bulletpoints({ data, setter }) {
         </ul>
       }
       <textarea name="new-bullet" id="new-bullet"></textarea>
-      <button onClick={handleAddingBullet}>Add Bulletpoint</button>
+      <button id="add-bullet-btn" onClick={handleAddingBullet}>
+        Add Bulletpoint
+      </button>
     </div>
   );
 }
