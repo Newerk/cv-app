@@ -116,15 +116,16 @@ function SavedExperiences({ data, handler, reference }) {
             }
           }}
         >
-          <p>
+          <p className="row-one">
             <strong>{experience.position}</strong>, {experience.employer}
           </p>
-          <p>
+          <p className="compact-date">
             {experience.beginDate.year === "Year"
               ? ""
               : experience.beginDate.year}
             -{experience.endDate.year === "Year" ? "" : experience.endDate.year}
           </p>
+          <img className="edit-symbol" src="../src/assets/pen.svg" />
         </div>
       ))}
     </div>

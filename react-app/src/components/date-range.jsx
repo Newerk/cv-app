@@ -39,11 +39,6 @@ function YearSelection({ handler }) {
   );
 }
 
-//perhaps pass a prop so that DateRange can handle itself based on the component it is used inside of so that nothing has to be hard coded
-/*Areas that need to be refactored once I add a prop:
-1. dateStorage
-2. the two if statements in my Present Checkbox Input Elements
- */
 export default function DateRange({
   dateStorage,
   dateStorageSetter,
@@ -196,12 +191,18 @@ export default function DateRange({
               monthSelectRef.current.classList.add("hidden");
 
               if (e.target.checked) {
+                yearSelectRef.current.classList.toggle("shift");
+                monthSelectRef.current.classList.toggle("shift");
+
                 setBoolean(true);
                 dateStorageSetter({
                   ...dateStorage,
                   endYear: "Present",
                 });
               } else {
+                yearSelectRef.current.classList.toggle("shift");
+                monthSelectRef.current.classList.toggle("shift");
+
                 setBoolean(false);
                 endInputsRef.current.querySelector(".year-btn").textContent =
                   "Year";

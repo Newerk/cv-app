@@ -57,13 +57,14 @@ function SavedEducationList({ data, handler, reference }) {
             }
           }}
         >
-          <p>
+          <p className="row-one">
             <strong>{education.degree}</strong>, {education.school}
           </p>
-          <p>
+          <p className="compact-date">
             {education.location} |{" "}
             {education.endDate.year === "Year" ? "" : education.endDate.year}
           </p>
+          <img className="edit-symbol" src="../src/assets/pen.svg" />
         </div>
       ))}
     </div>
