@@ -123,6 +123,13 @@ export default function EducationComponent({
       .querySelector(".buttons-wrapper")
       .classList.remove("hidden");
   }
+  const handleCancelEducation = () => {
+    setCurrentSelection({
+      ...currentSelection,
+      current_id: "",
+      is_editing: false,
+    });
+  };
 
   //Function will either add a completely new education object, or overwrite an object if it's targeted for editing
   const handleSaveEducation = () => {
@@ -262,6 +269,7 @@ export default function EducationComponent({
         <button
           className="education cancel-btn"
           onClick={() => {
+            handleCancelEducation();
             toggleFormVisiblity();
             formReset();
           }}

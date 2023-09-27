@@ -252,6 +252,14 @@ export default function ExperienceComponent({
     savedExpRef.current.classList.toggle("hidden");
   };
 
+  const handleCancelExperience = () => {
+    setCurrentSelection({
+      ...currentSelection,
+      current_id: "",
+      is_editing: false,
+    });
+  };
+
   const handleSaveExperience = () => {
     const selectedYear =
       expContainerRef.current.querySelector("#present-cb").checked === true
@@ -397,6 +405,7 @@ export default function ExperienceComponent({
         <button
           className="experience cancel-btn"
           onClick={() => {
+            handleCancelExperience();
             toggleFormVisiblity();
             formReset();
           }}

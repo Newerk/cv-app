@@ -12,11 +12,13 @@
 .month-btn {
   border-radius: 8px 0 0 8px;
   border-right: 1px solid #c6c5b9;
+  width: 8rem;
 }
 
 .year-btn {
   border-radius: 0 8px 8px 0;
   border-left: 1px solid #c6c5b9;
+  width: 4.8rem;
 }
 
 .begin-date-inputs {
