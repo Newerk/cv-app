@@ -108,6 +108,7 @@ export default function DateRange({
         <div className="buttons-wrapper">
           <button
             className="month-btn"
+            style={{ width: "8rem" }}
             onClick={(e) => {
               monthSelectRef.current.classList.toggle("hidden");
               yearSelectRef.current.classList.add("hidden");
@@ -148,6 +149,7 @@ export default function DateRange({
 
           <button
             className="month-btn"
+            style={{ width: "8rem" }}
             onClick={(e) => {
               monthSelectRef.current.classList.toggle("hidden");
               yearSelectRef.current.classList.add("hidden");
