@@ -407,25 +407,30 @@ export default function ExperienceComponent({
           />
           <Bulletpoints data={bulletpoint} setter={setBulletPoint} />
         </div>
-        <button
-          className="experience cancel-btn"
-          onClick={() => {
-            handleCancelExperience();
-            toggleFormVisiblity();
-            formReset();
-          }}
-        >
-          Cancel
-        </button>
-        <button
-          className="experience save-btn"
-          onClick={() => {
-            toggleFormVisiblity();
-            handleSaveExperience();
-          }}
-        >
-          Save
-        </button>
+        <div className="container-btns">
+          <button>Delete</button>
+          <div>
+            <button
+              className="experience cancel-btn"
+              onClick={() => {
+                handleCancelExperience();
+                toggleFormVisiblity();
+                formReset();
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              className="experience save-btn"
+              onClick={() => {
+                toggleFormVisiblity();
+                handleSaveExperience();
+              }}
+            >
+              Save
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

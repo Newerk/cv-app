@@ -93,7 +93,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #f97068;
 }
 button:focus,
 button:focus-visible {
@@ -126,6 +126,8 @@ input {
   border: 2px solid #858585;
   border-radius: 5px;
   color: black;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 textarea {
   margin-bottom: 0.2rem;
@@ -157,6 +159,7 @@ textarea {
   border-radius: 5px;
   color: black;
   padding-left: 3px;
+  padding-right: 3px;
 }
 
 .form-container > [class*="-section"] > h1 {
@@ -234,6 +237,7 @@ textarea {
   border-left: 1px solid #c6c5b9;
 }
 
+
 .cancel-btn {
   border-radius: 8px 0 0 8px;
   border-right: 1px solid #c6c5b9;
@@ -244,13 +248,19 @@ textarea {
   border-left: 1px solid #c6c5b9;
 }
 
+.container-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #f97068;
   }
   button {
     background-color: #f9f9f9;

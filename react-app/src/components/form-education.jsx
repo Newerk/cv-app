@@ -266,25 +266,30 @@ export default function EducationComponent({
             setBoolean={setPresentBoolean}
           />
         </div>
-        <button
-          className="education cancel-btn"
-          onClick={() => {
-            handleCancelEducation();
-            toggleFormVisiblity();
-            formReset();
-          }}
-        >
-          Cancel
-        </button>
-        <button
-          className="education save-btn"
-          onClick={() => {
-            toggleFormVisiblity();
-            handleSaveEducation();
-          }}
-        >
-          Save
-        </button>
+        <div className="container-btns">
+          <button>Delete</button>
+          <div>
+            <button
+              className="education cancel-btn"
+              onClick={() => {
+                handleCancelEducation();
+                toggleFormVisiblity();
+                formReset();
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              className="education save-btn"
+              onClick={() => {
+                toggleFormVisiblity();
+                handleSaveEducation();
+              }}
+            >
+              Save
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
