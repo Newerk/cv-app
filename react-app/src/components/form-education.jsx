@@ -200,12 +200,33 @@ export default function EducationComponent({
     });
   };
 
+  const handleDeleteEducation = () => {
+    if (currentSelection.is_editing === true) {
+      const removeSelected = savedEducation.filter(
+        (edu) => edu.id !== currentSelection.current_id
+      );
+      setSavedEducation([...removeSelected]);
+    }
+
+    eduContainerRef.current.classList.toggle("hidden");
+    savedEduRef.current.classList.toggle("hidden");
+    addEduBtnRef.current.classList.toggle("hidden");
+    formReset();
+    setCurrentSelection({
+      ...currentSelection,
+      current_id: "",
+      is_editing: false,
+    });
+  };
+
   function handleEditingEducation(id) {
     setCurrentSelection({
       ...currentSelection,
       is_editing: true,
       current_id: id,
     });
+
+    console.log(id);
 
     eduContainerRef.current.classList.toggle("hidden");
     savedEduRef.current.classList.toggle("hidden");
@@ -267,7 +288,7 @@ export default function EducationComponent({
           />
         </div>
         <div className="container-btns">
-          <button>Delete</button>
+          <button onClick={handleDeleteEducation}>Delete</button>
           <div>
             <button
               className="education cancel-btn"

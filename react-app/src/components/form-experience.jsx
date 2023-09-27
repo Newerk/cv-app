@@ -334,6 +334,25 @@ export default function ExperienceComponent({
     });
   };
 
+  const handleDeleteExperience = () => {
+    if (currentSelection.is_editing === true) {
+      const removeSelected = savedExperiences.filter(
+        (edu) => edu.id !== currentSelection.current_id
+      );
+      setSavedExperiences([...removeSelected]);
+    }
+
+    expContainerRef.current.classList.toggle("hidden");
+    savedExpRef.current.classList.toggle("hidden");
+    addExpBtnRef.current.classList.toggle("hidden");
+    formReset();
+    setCurrentSelection({
+      ...currentSelection,
+      current_id: "",
+      is_editing: false,
+    });
+  };
+
   function handleEditingExperience(id) {
     setCurrentSelection({
       ...currentSelection,
@@ -408,7 +427,7 @@ export default function ExperienceComponent({
           <Bulletpoints data={bulletpoint} setter={setBulletPoint} />
         </div>
         <div className="container-btns">
-          <button>Delete</button>
+          <button onClick={handleDeleteExperience}>Delete</button>
           <div>
             <button
               className="experience cancel-btn"
