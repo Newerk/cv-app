@@ -65,11 +65,7 @@ function SavedEducationList({ data, handler, reference }) {
             {education.location} |{" "}
             {education.endDate.year === "Year" ? "" : education.endDate.year}
           </p>
-          <img
-            className="edit-symbol"
-            src="../src/assets/pen-round-stroke.svg"
-            style={{ opacity: 1 }}
-          />
+          <div className="edit-symbol" style={{ opacity: 0 }} />
         </div>
       ))}
     </div>

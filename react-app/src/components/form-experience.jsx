@@ -126,11 +126,7 @@ function SavedExperiences({ data, handler, reference }) {
               : experience.beginDate.year}
             -{experience.endDate.year === "Year" ? "" : experience.endDate.year}
           </p>
-          <img
-            className="edit-symbol"
-            src="../src/assets/pen-round-stroke.svg"
-            style={{ opacity: 0 }}
-          />
+          <div className="edit-symbol" style={{ opacity: 0 }} />
         </div>
       ))}
     </div>
