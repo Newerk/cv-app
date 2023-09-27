@@ -177,42 +177,44 @@ export default function DateRange({
             {endYear}
           </button>
         </div>
-        <div className="checkbox">
-          <input
-            type="checkbox"
-            name="present"
-            id="present-cb"
-            onChange={(e) => {
-              endInputsRef.current
-                .querySelector(".buttons-wrapper")
-                .classList.toggle("hidden");
+        <div className="cb-wrapper">
+          <div className="checkbox">
+            <input
+              type="checkbox"
+              name="present"
+              id="present-cb"
+              onChange={(e) => {
+                endInputsRef.current
+                  .querySelector(".buttons-wrapper")
+                  .classList.toggle("hidden");
 
-              yearSelectRef.current.classList.add("hidden");
-              monthSelectRef.current.classList.add("hidden");
+                yearSelectRef.current.classList.add("hidden");
+                monthSelectRef.current.classList.add("hidden");
 
-              if (e.target.checked) {
-                yearSelectRef.current.classList.toggle("shift");
-                monthSelectRef.current.classList.toggle("shift");
+                if (e.target.checked) {
+                  yearSelectRef.current.classList.toggle("shift");
+                  monthSelectRef.current.classList.toggle("shift");
 
-                setBoolean(true);
-                dateStorageSetter({
-                  ...dateStorage,
-                  endYear: "Present",
-                });
-              } else {
-                yearSelectRef.current.classList.toggle("shift");
-                monthSelectRef.current.classList.toggle("shift");
+                  setBoolean(true);
+                  dateStorageSetter({
+                    ...dateStorage,
+                    endYear: "Present",
+                  });
+                } else {
+                  yearSelectRef.current.classList.toggle("shift");
+                  monthSelectRef.current.classList.toggle("shift");
 
-                setBoolean(false);
-                endInputsRef.current.querySelector(".year-btn").textContent =
-                  "Year";
-                dateStorageSetter({ ...dateStorage, endYear: "" });
-              }
+                  setBoolean(false);
+                  endInputsRef.current.querySelector(".year-btn").textContent =
+                    "Year";
+                  dateStorageSetter({ ...dateStorage, endYear: "" });
+                }
 
-              console.log(dateStorage.endDate);
-            }}
-          />
-          <label htmlFor="present-cb">Present</label>
+                console.log(dateStorage.endDate);
+              }}
+            />
+            <label htmlFor="present-cb">Present</label>
+          </div>
         </div>
       </div>
       <div ref={monthSelectRef} className="months-dropdown hidden">

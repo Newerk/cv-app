@@ -142,6 +142,7 @@ function Bulletpoints({ data, setter }) {
 
   return (
     <div className="bullets-wrapper">
+      <h2>Bulletpoints</h2>
       {
         <ul>
           {data.map((point) => (
@@ -186,7 +187,11 @@ function Bulletpoints({ data, setter }) {
           ))}
         </ul>
       }
-      <textarea name="new-bullet" id="new-bullet"></textarea>
+      <textarea
+        name="new-bullet"
+        id="new-bullet"
+        placeholder="Describe your role, contribution, achievement, etc."
+      ></textarea>
       <button id="add-bullet-btn" onClick={handleAddingBullet}>
         Add Bulletpoint
       </button>

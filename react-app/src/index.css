@@ -128,12 +128,35 @@ input {
   color: black;
 }
 textarea {
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
+  background-color: white;
+  border: 2px solid #858585;
+  border-radius: 5px;
+  color: black;
 }
 
 .bullets-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.bullets-wrapper > h2 {
+  margin-bottom: 0.5rem;
+}
+.bullets-wrapper > ul > li {
+  margin-bottom: 1rem;
+}
+
+.bullets-wrapper > ul > li > p {
+  line-height: 1.6rem;
+}
+
+.bullets-wrapper > ul > li > *[contenteditable="true"] {
+  background-color: white;
+  border: 2px solid #858585;
+  border-radius: 5px;
+  color: black;
+  padding-left: 3px;
 }
 
 .form-container > [class*="-section"] > h1 {
@@ -196,6 +219,29 @@ textarea {
 .saved-education:hover,
 .saved-experience:hover {
   background-color: #515151;
+}
+
+.edit-btn,
+.bullet.save-btn {
+  border-radius: 8px 0 0 8px;
+  border-right: 1px solid #c6c5b9;
+  width: 5rem;
+}
+
+.delete-btn,
+.bullet.cancel-btn {
+  border-radius: 0 8px 8px 0;
+  border-left: 1px solid #c6c5b9;
+}
+
+.cancel-btn {
+  border-radius: 8px 0 0 8px;
+  border-right: 1px solid #c6c5b9;
+}
+
+.save-btn {
+  border-radius: 0 8px 8px 0;
+  border-left: 1px solid #c6c5b9;
 }
 
 @media (prefers-color-scheme: light) {
