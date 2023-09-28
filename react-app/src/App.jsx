@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useRef, useState } from "react";
 import "./index.css";
 import HeaderComponent from "./components/form-header.jsx";
 import EducationComponent from "./components/form-education.jsx";
@@ -7,6 +8,8 @@ import CVPreview from "./components/cv-preview";
 import SkillsComponent from "./components/form-skills";
 import { savedExperiencesData } from "./data/savedExperiences";
 import { savedEducationData } from "./data/savedEducation";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 function App() {
   //general info component states
@@ -53,10 +56,34 @@ function App() {
   //skills component states
   const [savedSkills, setSavedSkills] = useState([]);
 
+  const componentRef = useRef();
+
+  const ExportToPdf = () => {
+    const handleExport = () => {
+      const input = document.getElementById("cv-previewer");
+
+      html2canvas(input).then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF("p", "mm", "a4");
+        pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
+        pdf.save("exported-component.pdf");
+      });
+    };
+
+    return (
+      <div>
+        <button id="download-btn" onClick={handleExport}>
+          DOWNLOAD
+        </button>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="content">
         <div className="form-container">
+          <ExportToPdf />
           <HeaderComponent
             inputValues={inputValues}
             setInputValues={setInputValues}
@@ -89,7 +116,7 @@ function App() {
           />
         </div>
         <div className="cv-container">
-          <div id="cv-previewer">
+          <div ref={componentRef} id="cv-previewer">
             <CVPreview
               generalData={inputValues}
               eduData={savedEducation}

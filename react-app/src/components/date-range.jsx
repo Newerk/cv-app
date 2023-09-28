@@ -72,6 +72,7 @@ export default function DateRange({
     monthSelectRef.current.classList.toggle("hidden");
   };
 
+
   const handleYearSelection = (e) => {
     if (
       beginInputsRef.current

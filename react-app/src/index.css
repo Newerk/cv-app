@@ -252,27 +252,19 @@ textarea {
   justify-content: space-between;
   margin-top: 2rem;
   transition: 0.25s;
-
 }
 
 .container-btns > .form-delete-btn {
   border: none;
-  transition: background-color .25s;
+  transition: background-color 0.25s;
 }
 
 .container-btns > .form-delete-btn:hover {
   background-color: #f97068;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #f97068;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#download-btn {
+  font-weight: bold;
+  background-color: #1f5673;
+  width: 100%;
 }

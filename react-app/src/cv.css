@@ -122,3 +122,7 @@ li {
 .skills-section > p {
 margin-bottom: 1rem;
 }
+
+#skills-textbox {
+  margin-bottom: 1rem;
+}
