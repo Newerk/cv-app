@@ -93,7 +93,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #f97068;
+  border-color: #edf2ef;
 }
 button:focus,
 button:focus-visible {
@@ -162,11 +162,11 @@ textarea {
   padding-right: 3px;
 }
 
-.form-container > [class*="-section"] > h1 {
+.form-container > [class$="-section"] > h1 {
   margin-bottom: 1rem;
 }
 
-.form-container > [class*="-section"] {
+.form-container > [class$="-section"] {
   background-color: #3b3b3b;
   padding: 1rem;
   border-radius: 8px;
@@ -251,6 +251,17 @@ textarea {
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
+  transition: 0.25s;
+
+}
+
+.container-btns > .form-delete-btn {
+  border: none;
+  transition: background-color .25s;
+}
+
+.container-btns > .form-delete-btn:hover {
+  background-color: #f97068;
 }
 
 @media (prefers-color-scheme: light) {

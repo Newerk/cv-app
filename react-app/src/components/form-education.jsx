@@ -288,7 +288,9 @@ export default function EducationComponent({
           />
         </div>
         <div className="container-btns">
-          <button onClick={handleDeleteEducation}>Delete</button>
+          <button className="form-delete-btn" onClick={handleDeleteEducation}>
+            Delete
+          </button>
           <div>
             <button
               className="education cancel-btn"
