@@ -64,7 +64,7 @@ function App() {
         const imgData = canvas.toDataURL("image/png");
         const pdf = new jsPDF("p", "mm", "a4");
         pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
-        pdf.save("exported-component.pdf");
+        pdf.save("resume.pdf");
       });
     };
 

@@ -57,6 +57,9 @@ label {
   display: flex;
   flex-direction: column;
 }
+.header-component > h1 {
+  margin-bottom: 1rem;
+}
 
 .form-container {
   display: flex;
