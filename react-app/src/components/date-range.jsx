@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
-//make sure to give the option for the user to select 'Present' if they are still currently involved
-
 import { useRef, useState } from "react";
 import { monthsList } from "../data/monthsArray";
 import "../date-range.css";
+
 
 //Elements with "focused" toggle will be the element of focus to have its text content change based on the user selection
 
@@ -210,7 +209,6 @@ export default function DateRange({
                   dateStorageSetter({ ...dateStorage, endYear: "" });
                 }
 
-                console.log(dateStorage.endDate);
               }}
             />
             <label htmlFor="present-cb">Present</label>

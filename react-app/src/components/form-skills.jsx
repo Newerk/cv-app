@@ -59,7 +59,6 @@ export default function SkillsComponent({ savedSkills, setSavedSkills }) {
               .forEach((skill) => skillsArray.push(skill.trim()));
 
             setSavedSkills([...skillsArray]);
-            console.log(skillsArray);
           }}
         >
           Save

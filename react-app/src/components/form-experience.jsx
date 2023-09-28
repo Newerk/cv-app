@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useRef /*, useState */ } from "react";
+import { useRef } from "react";
 import DateRange from "./date-range";
 import { v4 as uuidv4 } from "uuid";
-// import { savedExperiencesData } from "../data/savedExperiences";
 
 function Company() {
   return (
@@ -278,6 +277,7 @@ export default function ExperienceComponent({
       const selectedExp = savedExperiences.find(
         (exp) => exp.id === currentSelection.current_id
       );
+
       //get the index of the matching selected experience obj, and update the property values based on the information filled out in the form inputs
       let copy = [...savedExperiences];
       copy[copy.indexOf(selectedExp)] = {
@@ -321,12 +321,11 @@ export default function ExperienceComponent({
             year: expDateStorage.endYear,
             present: presentBoolean,
           },
-          bulletPoints: [...bulletpoint], //need to take bulletpoints and copy it here
+          bulletPoints: [...bulletpoint],
         },
       ]);
     }
 
-    console.log(savedExperiences);
     formReset();
     setCurrentSelection({
       ...currentSelection,

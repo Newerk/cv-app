@@ -235,8 +235,6 @@ export default function EducationComponent({
       current_id: id,
     });
 
-    console.log(id);
-
     eduContainerRef.current.classList.toggle("hidden");
     savedEduRef.current.classList.toggle("hidden");
     addEduBtnRef.current.classList.toggle("hidden");
@@ -285,7 +283,6 @@ export default function EducationComponent({
             behavior: "smooth",
           });
 
-          console.log(savedEducation);
         }}
       >
         + New Education
@@ -322,7 +319,6 @@ export default function EducationComponent({
               onClick={() => {
                 toggleFormVisiblity();
                 handleSaveEducation();
-                console.log(savedEducation);
               }}
             >
               Save

@@ -56,6 +56,7 @@ function App() {
 
   const componentRef = useRef();
 
+  //cv download button
   const ExportToPdf = () => {
     const handleExport = () => {
       const input = document.getElementById("cv-previewer");
