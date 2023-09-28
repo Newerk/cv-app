@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useRef} from "react";
+import { useRef } from "react";
 
 export default function SkillsComponent({ savedSkills, setSavedSkills }) {
   const skillsRef = useRef(null);
   const skillsContainerRef = useRef(null);
   const addSkillBtnRef = useRef(null);
+  const skillsSectionRef = useRef();
 
   return (
-    <div className="skills-section">
+    <div ref={skillsSectionRef} className="skills-section">
       <h1>Skills</h1>
       <p>{savedSkills.join(", ")}</p>
       <button
@@ -15,6 +16,10 @@ export default function SkillsComponent({ savedSkills, setSavedSkills }) {
         onClick={(e) => {
           skillsContainerRef.current.classList.toggle("hidden");
           e.target.classList.toggle("hidden");
+          skillsSectionRef.current.scrollIntoView({
+            alignToTop: true,
+            behavior: "smooth",
+          });
         }}
       >
         + Add Skills
@@ -54,7 +59,7 @@ export default function SkillsComponent({ savedSkills, setSavedSkills }) {
               .forEach((skill) => skillsArray.push(skill.trim()));
 
             setSavedSkills([...skillsArray]);
-            console.log(skillsArray)
+            console.log(skillsArray);
           }}
         >
           Save

@@ -273,3 +273,7 @@ textarea {
   background-color: #1f5673;
   width: 100%;
 }
+
+.form-container > [class$="-section"] {
+  scroll-margin: 1rem;
+}

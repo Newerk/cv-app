@@ -84,6 +84,7 @@ export default function EducationComponent({
   const savedEduRef = useRef(null);
   const eduContainerRef = useRef(null);
   const addEduBtnRef = useRef(null);
+  const eduSectionRef = useRef();
 
   const toggleFormVisiblity = () => {
     savedEduRef.current.classList.toggle("hidden");
@@ -264,7 +265,7 @@ export default function EducationComponent({
   }
 
   return (
-    <div className="education-section">
+    <div ref={eduSectionRef} className="education-section">
       <h1>Education</h1>
       <div ref={savedEduRef}>
         <SavedEducationList
@@ -279,6 +280,11 @@ export default function EducationComponent({
           eduContainerRef.current.classList.toggle("hidden");
           savedEduRef.current.classList.toggle("hidden");
           e.target.classList.toggle("hidden");
+          eduSectionRef.current.scrollIntoView({
+            alignToTop: true,
+            behavior: "smooth",
+          });
+
           console.log(savedEducation);
         }}
       >

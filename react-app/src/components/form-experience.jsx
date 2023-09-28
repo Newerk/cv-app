@@ -214,6 +214,7 @@ export default function ExperienceComponent({
   const expContainerRef = useRef(null);
   const addExpBtnRef = useRef(null);
   const savedExpRef = useRef(null);
+  const expSectionRef = useRef();
 
   function formReset() {
     //clear text from inputs
@@ -400,7 +401,7 @@ export default function ExperienceComponent({
   }
 
   return (
-    <div className="experience-section">
+    <div ref={expSectionRef} className="experience-section">
       <h1>Experience</h1>
 
       <div ref={savedExpRef}>
@@ -417,6 +418,10 @@ export default function ExperienceComponent({
           e.target.classList.toggle("hidden");
           expContainerRef.current.classList.toggle("hidden");
           savedExpRef.current.classList.toggle("hidden");
+          expSectionRef.current.scrollIntoView({
+            alignToTop: true,
+            behavior: "smooth",
+          });
         }}
       >
         + New Experience
