@@ -6,8 +6,6 @@ import EducationComponent from "./components/form-education.jsx";
 import ExperienceComponent from "./components/form-experience";
 import CVPreview from "./components/cv-preview";
 import SkillsComponent from "./components/form-skills";
-import { savedExperiencesData } from "./data/savedExperiences";
-import { savedEducationData } from "./data/savedEducation";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
@@ -20,7 +18,7 @@ function App() {
   });
 
   //education component states
-  const [savedEducation, setSavedEducation] = useState(savedEducationData);
+  const [savedEducation, setSavedEducation] = useState([]);
   const [eduPresentBoolean, setEduPresentBoolean] = useState(false);
   const [eduCurrentSelection, setEduCurrentSelection] = useState({
     current_id: "",
@@ -37,7 +35,7 @@ function App() {
 
   //experience component states
   const [savedExperiences, setSavedExperiences] =
-    useState(savedExperiencesData);
+    useState([]);
   const [expPresentBoolean, setExpPresentBoolean] = useState(false);
   const [bulletpoint, setBulletPoint] = useState([]);
   const [expCurrentSelection, setExpCurrentSelection] = useState({

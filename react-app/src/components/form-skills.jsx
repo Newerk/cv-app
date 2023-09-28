@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef /*, useState*/ } from "react";
+import { useRef} from "react";
 
 export default function SkillsComponent({ savedSkills, setSavedSkills }) {
   const skillsRef = useRef(null);

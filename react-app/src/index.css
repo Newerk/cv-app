@@ -92,9 +92,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #edf2ef;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -129,6 +131,7 @@ input {
   padding-left: 3px;
   padding-right: 3px;
 }
+
 textarea {
   margin-bottom: 0.2rem;
   background-color: white;
@@ -145,6 +148,7 @@ textarea {
 .bullets-wrapper > h2 {
   margin-bottom: 0.5rem;
 }
+
 .bullets-wrapper > ul > li {
   margin-bottom: 1rem;
 }
@@ -214,6 +218,7 @@ textarea {
   grid-row: 2;
   transition: 0.25s;
 }
+
 .saved-education:hover > .edit-symbol,
 .saved-experience:hover > .edit-symbol {
   opacity: 1 !important;

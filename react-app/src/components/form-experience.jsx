@@ -351,6 +351,14 @@ export default function ExperienceComponent({
       current_id: "",
       is_editing: false,
     });
+    setExpDateStorage({
+      ...expDateStorage,
+      beginMonth: "Month",
+      beginYear: "Year",
+      endMonth: "Month",
+      endYear: "Year",
+      present: false,
+    });
   };
 
   function handleEditingExperience(id) {
@@ -427,7 +435,9 @@ export default function ExperienceComponent({
           <Bulletpoints data={bulletpoint} setter={setBulletPoint} />
         </div>
         <div className="container-btns">
-          <button className="form-delete-btn" onClick={handleDeleteExperience}>Delete</button>
+          <button className="form-delete-btn" onClick={handleDeleteExperience}>
+            Delete
+          </button>
           <div>
             <button
               className="experience cancel-btn"

@@ -39,6 +39,7 @@
   grid-auto-rows: auto;
 
   gap: 1px;
+  transition: .25s;
 }
 
 .months-dropdown {
@@ -51,11 +52,19 @@
   margin-top: -2.3rem;
 }
 
+.months-container > button:hover,
+.years-container > button:hover {
+  border: none;
+  background-color: #1f5673;
+  color: white;
+}
+
 .years-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   gap: 1px;
+  transition: .25s;
 }
 
 .years-dropdown {

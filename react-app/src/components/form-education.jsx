@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef /*, useState*/ } from "react";
-// import { savedEducationData } from "../data/savedEducation";
+import { useRef } from "react";
 import DateRange from "./date-range";
 import { v4 as uuidv4 } from "uuid";
 
@@ -198,6 +197,15 @@ export default function EducationComponent({
       current_id: "",
       is_editing: false,
     });
+
+    setEducateStorage({
+      ...educateStorage,
+      beginMonth: "Month",
+      beginYear: "Year",
+      endMonth: "Month",
+      endYear: "Year",
+      present: false,
+    });
   };
 
   const handleDeleteEducation = () => {
@@ -271,6 +279,7 @@ export default function EducationComponent({
           eduContainerRef.current.classList.toggle("hidden");
           savedEduRef.current.classList.toggle("hidden");
           e.target.classList.toggle("hidden");
+          console.log(savedEducation);
         }}
       >
         + New Education
@@ -307,6 +316,7 @@ export default function EducationComponent({
               onClick={() => {
                 toggleFormVisiblity();
                 handleSaveEducation();
+                console.log(savedEducation);
               }}
             >
               Save
