@@ -3,9 +3,9 @@ import { useRef, useState } from "react";
 import "./index.css";
 import HeaderComponent from "./components/form-header.jsx";
 import EducationComponent from "./components/form-education.jsx";
-import ExperienceComponent from "./components/form-experience";
-import CVPreview from "./components/cv-preview";
-import SkillsComponent from "./components/form-skills";
+import ExperienceComponent from "./components/form-experience.jsx";
+import CVPreview from "./components/cv-preview.jsx";
+import SkillsComponent from "./components/form-skills.jsx";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useRef } from "react";
-import DateRange from "./date-range";
+import DateRange from "./date-range.jsx";
 import { v4 as uuidv4 } from "uuid";
 
 function Company() {

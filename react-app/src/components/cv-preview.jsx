@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { v4 as uuidv4 } from "uuid";
 import "../cv.css";
-import { monthsList } from "../data/monthsArray";
+import { monthsList } from "../data/monthsArray.js";
 
 export default function CVPreview({
   generalData,

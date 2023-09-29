@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
-import { monthsList } from "../data/monthsArray";
+import { monthsList } from "../data/monthsArray.js";
 import "../date-range.css";
 
 
